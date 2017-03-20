@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_fav"
+            android:icon="@mipmap/icon_star_gray"
+            android:title="我的收藏" />
+        <item
+            android:id="@+id/nav_trash"
+            android:icon="@drawable/ic_undo_black_24dp"
+            android:title="查看并恢复删除通知" />
+        <item
+            android:id="@+id/nav_message"
+            android:icon="@drawable/ic_forum_black_24dp"
+            android:title="留言" />
+        <item
+            android:id="@+id/nav_personal_info"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="修改密码及资料" />
+        <item
+            android:id="@+id/nav_back"
+            android:icon="@drawable/ic_assignment_return_black_24dp"
+            android:title="主菜单" />
+
+
+    </group>
+
+
+
+</menu>

@@ -1,4 +1,4 @@
-package buaa.buaahelper;
+package com.ourbuaa.buaahelper;
 
 import android.widget.RelativeLayout;
 

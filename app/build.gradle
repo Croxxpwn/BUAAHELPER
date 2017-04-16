@@ -4,7 +4,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.0"
     defaultConfig {
-        applicationId "buaa.buaahelper"
+        applicationId "com.ourbuaa.buaahelper"
         minSdkVersion 19
         targetSdkVersion 24
         versionCode 1

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
 
 
-    tools:context="buaa.buaahelper.NoticeListFragment">
+    tools:context="com.ourbuaa.buaahelper.NoticeListFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/NoticeList"

@@ -1,4 +1,4 @@
-package buaa.buaahelper;
+package com.ourbuaa.buaahelper;
 
 import android.support.v7.widget.RecyclerView;
 

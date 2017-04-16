@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="buaa.buaahelper.LoginActivity">
+    tools:context="com.ourbuaa.buaahelper.LoginActivity">
 
     <EditText
         android:layout_marginTop="30dp"

@@ -15,13 +15,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.yanzhenjie.recyclerview.swipe.SwipeMenuAdapter;
+
 import java.lang.reflect.Field;
 import java.util.List;
 /**
  * Created by alan_yang on 2017/1/21.
  */
 
-public class BUAA_RecyclerViewAdapter extends RecyclerView.Adapter<BUAA_RecyclerViewAdapter.ListItemViewHolder> {
+public class BUAA_RecyclerViewAdapter extends SwipeMenuAdapter<BUAA_RecyclerViewAdapter.ListItemViewHolder> {
 
 
     private  List<CommonItemForList> items;
@@ -72,15 +74,21 @@ public class BUAA_RecyclerViewAdapter extends RecyclerView.Adapter<BUAA_Recycler
     {
             this.Listener = mlistener;
     }
+
+
     @Override
-    public ListItemViewHolder onCreateViewHolder(
-            ViewGroup viewGroup, int viewType) {
+    public View onCreateContentView(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.
-                from(viewGroup.getContext()).
+                from(parent.getContext()).
                 inflate(R.layout.item_demo,
-                        viewGroup,
+                        parent,
                         false);
-        return new ListItemViewHolder(itemView);
+        return itemView;
+    }
+
+    @Override
+    public ListItemViewHolder onCompatCreateViewHolder(View realContentView, int viewType) {
+        return new ListItemViewHolder(realContentView);
     }
 
     @Override

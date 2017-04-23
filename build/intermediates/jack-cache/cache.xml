@@ -2,22 +2,10 @@
 <items version="2" >
 
     <item
-        jar="G:\androidsdk\platforms\android-24\optional\org.apache.http.legacy.jar"
-        revision="24.0.0"
-        sha1="fb7023e781abb70ed1b0442eb611fbed295cae84">
-        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackRuntimeLibraries\debug\jars\8000\40\org.apache.http.legacy-1d2e5ead23b4752b91ecf44c2b45d78306f67a8f.jar" />
-    </item>
-    <item
         jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.yanzhenjie\recyclerview-swipe\1.0.4\jars\classes.jar"
         revision="24.0.0"
         sha1="4d51d7103be1421fe61eb3feb05911cb7cca96a3">
         <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-98a1b0ff64391bc0e063bebc22647db32e73a37e.jar" />
-    </item>
-    <item
-        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.2.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
-        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-b974e06a12bb3e44a5d7653afeffe33aebc8434f.jar" />
     </item>
     <item
         jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.2.0\jars\classes.jar"
@@ -38,16 +26,10 @@
         <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\support-annotations-25.2.0-c90230b3bd14920eb6fbdc351d616a7ae4586263.jar" />
     </item>
     <item
-        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.4.0\jars\classes.jar"
+        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support.test\rules\0.5\jars\classes.jar"
         revision="24.0.0"
-        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
-        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-6476595b0ffe6c6defbdcc7e908da8671adaefbe.jar" />
-    </item>
-    <item
-        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.2.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
-        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-a6bc56a702bdab1186d4552a621ce8fa19d5baf3.jar" />
+        sha1="7e11799d8a26bfa5d48acafe012ee5545b9bf468">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\classes-a8029bf0bef900515728a104bbf42dad07b7b591.jar" />
     </item>
     <item
         jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.2.0\jars\classes.jar"
@@ -56,16 +38,94 @@
         <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-2e8dbe5f427a406187bcc7281cefdfd865634042.jar" />
     </item>
     <item
-        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.2.0\jars\classes.jar"
+        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support.test\exposed-instrumentation-api-publish\0.5\jars\classes.jar"
         revision="24.0.0"
-        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
-        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-3934bfbbd40cdeb54bba9c26c1d232d2c7230678.jar" />
+        sha1="905f3e63973d47fedf2d945fa31d8c0f0c98816e">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\classes-7c0c2a6404be4c334ccc4b9b9d8da4f570daa062.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.gradle\caches\modules-2\files-2.1\junit\junit\4.12\2973d150c0dc1fefe998f834810d68f278ea58ec\junit-4.12.jar"
+        revision="24.0.0"
+        sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\junit-4.12-b1b56d90ea72ff99cf098450f8677a9b5b285180.jar" />
     </item>
     <item
         jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.2.0\jars\classes.jar"
         revision="24.0.0"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-8e3e627227daf4dfddba4cfe1c01d63bd73762c3.jar" />
+    </item>
+    <item
+        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.2.0\jars\classes.jar"
+        revision="24.0.0"
+        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-de04669b2d7bf7377b5a2422299ff768e6c264f1.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\2.0.1\516c03b21d50a644d538de0f0369c620989cd8f0\jsr305-2.0.1.jar"
+        revision="24.0.0"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\jsr305-2.0.1-9f5efecdc00d72b8dcfd5d0ad8876a5dec0f150e.jar" />
+    </item>
+    <item
+        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
+        revision="24.0.0"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-1235e929701590344a451e292da25824112c614a.jar" />
+    </item>
+    <item
+        jar="G:\androidsdk\platforms\android-24\optional\org.apache.http.legacy.jar"
+        revision="24.0.0"
+        sha1="fb7023e781abb70ed1b0442eb611fbed295cae84">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackRuntimeLibraries\debug\jars\8000\40\org.apache.http.legacy-1d2e5ead23b4752b91ecf44c2b45d78306f67a8f.jar" />
+    </item>
+    <item
+        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.2.0\jars\classes.jar"
+        revision="24.0.0"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-b974e06a12bb3e44a5d7653afeffe33aebc8434f.jar" />
+    </item>
+    <item
+        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support.test\runner\0.5\jars\classes.jar"
+        revision="24.0.0"
+        sha1="796f9229948e907471c5595fbe94655ccf03ff73">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\classes-b54b6b8be65137d6e9154990c1b4297e4073bf75.jar" />
+    </item>
+    <item
+        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.4.0\jars\classes.jar"
+        revision="24.0.0"
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-6476595b0ffe6c6defbdcc7e908da8671adaefbe.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-integration\1.3\5de0c73fef18917cd85d0ab70bb23818685e4dfd\hamcrest-integration-1.3.jar"
+        revision="24.0.0"
+        sha1="5de0c73fef18917cd85d0ab70bb23818685e4dfd">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\hamcrest-integration-1.3-a3af61e941d61e9d6e9b43fd1d7ac43348bcf965.jar" />
+    </item>
+    <item
+        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.2.0\jars\classes.jar"
+        revision="24.0.0"
+        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-a6bc56a702bdab1186d4552a621ce8fa19d5baf3.jar" />
+    </item>
+    <item
+        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.2.0\jars\classes.jar"
+        revision="24.0.0"
+        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-3934bfbbd40cdeb54bba9c26c1d232d2c7230678.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.gradle\caches\modules-2\files-2.1\javax.annotation\javax.annotation-api\1.2\479c1e06db31c432330183f5cae684163f186146\javax.annotation-api-1.2.jar"
+        revision="24.0.0"
+        sha1="479c1e06db31c432330183f5cae684163f186146">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\javax.annotation-api-1.2-3aee6114fb224adc60bdb9cf10a04cbb7453ab3f.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.gradle\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
+        revision="24.0.0"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\javax.inject-1-7f4f82ba0c50d2d01d8ece39a1f46a1a4f1a061f.jar" />
     </item>
     <item
         jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.2.0\jars\classes.jar"
@@ -92,16 +152,34 @@
         <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-233eb49fff3e63a515048311a178a63a7a88fa00.jar" />
     </item>
     <item
-        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.2.0\jars\classes.jar"
+        jar="C:\Users\alan_yang\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar"
         revision="24.0.0"
-        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
-        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-de04669b2d7bf7377b5a2422299ff768e6c264f1.jar" />
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\hamcrest-core-1.3-a471c5aa55bcb7c91302fcbf4b2fae6b76f4a1d8.jar" />
     </item>
     <item
-        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
+        jar="C:\Users\alan_yang\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-library\1.3\4785a3c21320980282f9f33d0d1264a69040538f\hamcrest-library-1.3.jar"
         revision="24.0.0"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-1235e929701590344a451e292da25824112c614a.jar" />
+        sha1="4785a3c21320980282f9f33d0d1264a69040538f">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\hamcrest-library-1.3-f7d4c962231607b80f40af99f1165c8c7e5177ea.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.gradle\caches\modules-2\files-2.1\com.squareup\javawriter\2.1.1\67ff45d9ae02e583d0f9b3432a5ebbe05c30c966\javawriter-2.1.1.jar"
+        revision="24.0.0"
+        sha1="67ff45d9ae02e583d0f9b3432a5ebbe05c30c966">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\javawriter-2.1.1-0b490a9d0167c54a0559fa1b2a5f08d016688517.jar" />
+    </item>
+    <item
+        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support.test.espresso\espresso-core\2.2.2\jars\classes.jar"
+        revision="24.0.0"
+        sha1="d115b0e9e1501135fe91254ba884fcbd83d374c0">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\classes-a970ca38e769523b28d04532b428f27d20f2e2ae.jar" />
+    </item>
+    <item
+        jar="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support.test.espresso\espresso-idling-resource\2.2.2\jars\classes.jar"
+        revision="24.0.0"
+        sha1="a890ee8445927649d9ed50f625a315d8758688be">
+        <dex dex="G:\Project\BUAAHELPER_Ui_SwipeRecyclerView\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\classes-c4ad00ef6d6be5035d9bb8bb0e099b47d3850531.jar" />
     </item>
     <item
         jar="G:\androidsdk\platforms\android-24\android.jar"

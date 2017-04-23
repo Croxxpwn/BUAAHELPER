@@ -14,11 +14,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,7 +27,6 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -37,7 +34,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, NoticeListFragment.OnListFragmentInteractionListener, View.OnClickListener {
     private ImageButton form, notice, query;
     private NoticeListFragment noticeFragment, FavFragment,trashFragment;
-    private BlankFragment FormblankFragment, QueryblankFragment,PersonalInfoFragment,MessageFragment,SettingPasswordFragment;
+    private WEBFragment FormblankFragment, QueryblankFragment,PersonalInfoFragment,MessageFragment,SettingPasswordFragment;
     private String username, password;
     private BUAAContentProvider buaaContentProvider, buaaFavContentProvider,buaaTrashContentProvider;
     private RelativeLayout bottombar;
@@ -218,17 +215,17 @@ public class MainActivity extends AppCompatActivity
 
 
         noticeFragment.setProvider(buaaContentProvider);
-        noticeFragment.setOnScrollListener(new ListScrollListener());
+        //noticeFragment.setOnScrollListener(new ListScrollListener());
         noticeFragment.setSqLiteUtils(mySQLite);
         //TODO:TRASH PROVIDER SETTING
         //  noticeFragment.setTrash(buaaTrashContentProvider);
         transaction.add(R.id.FragmentContainer, noticeFragment);
 
-            FormblankFragment = BlankFragment.newInstance(getFormUrl());
-            QueryblankFragment = BlankFragment.newInstance(getQueryUrl());
-            MessageFragment = BlankFragment.newInstance(getMessageUrl());
-            SettingPasswordFragment = BlankFragment.newInstance(getRegisterUrl());
-            PersonalInfoFragment = BlankFragment.newInstance(getPersonalInfoUrl());
+            FormblankFragment = WEBFragment.newInstance(getFormUrl());
+            QueryblankFragment = WEBFragment.newInstance(getQueryUrl());
+            MessageFragment = WEBFragment.newInstance(getMessageUrl());
+            SettingPasswordFragment = WEBFragment.newInstance(getRegisterUrl());
+            PersonalInfoFragment = WEBFragment.newInstance(getPersonalInfoUrl());
             transaction.add(R.id.FragmentContainer,QueryblankFragment);
             transaction.add(R.id.FragmentContainer, FormblankFragment);
             transaction.add(R.id.FragmentContainer, MessageFragment);
@@ -239,7 +236,7 @@ public class MainActivity extends AppCompatActivity
             FavFragment.setSqLiteUtils(mySQLite);
             buaaFavContentProvider = DataUtils.getContentProvider(BUAAContentProvider.FAV);
             FavFragment.setProvider(buaaFavContentProvider);
-            FavFragment.setOnScrollListener(new ListScrollListener());
+           // FavFragment.setOnScrollListener(new ListScrollListener());
             transaction.add(R.id.FragmentContainer, FavFragment);
 
 
@@ -247,7 +244,7 @@ public class MainActivity extends AppCompatActivity
             trashFragment.setSqLiteUtils(mySQLite);
             buaaTrashContentProvider = DataUtils.getContentProvider(BUAAContentProvider.Trash);
             trashFragment.setProvider(buaaTrashContentProvider);
-            trashFragment.setOnScrollListener(new ListScrollListener());
+           // trashFragment.setOnScrollListener(new ListScrollListener());
             transaction.add(R.id.FragmentContainer, trashFragment);
         transaction.hide(QueryblankFragment);
         transaction.hide(FormblankFragment);

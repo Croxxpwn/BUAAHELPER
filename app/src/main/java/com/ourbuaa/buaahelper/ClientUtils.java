@@ -1,15 +1,16 @@
 package com.ourbuaa.buaahelper;
 
-import android.app.Activity;
+
 import android.util.Log;
 
 import org.json.JSONArray;
-import org.json.JSONException;
+
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
+
 
 
 /**
@@ -64,6 +65,8 @@ public class ClientUtils {
 
     public final static String STATE_GOODSERVICE = "STATE_GOODSERVICE";
 
+    private final static String HOST = "https://api.ourbuaa.com";
+
 
     public static String Login(String user, String password) {
 
@@ -72,7 +75,7 @@ public class ClientUtils {
          * 同时将access_token存到数据库
          */
 
-        String url = "https://www.ourbuaa.com/api/login";
+        String url = HOST + "/login";
         Map<String, String> params = new HashMap<>();
         params.put("user", user);
         params.put("password", password);
@@ -90,10 +93,8 @@ public class ClientUtils {
                 if (mJSONObject.getString("errcode").equals("0")) {
                     setAccess_token(mJSONObject.getString("access_token"));
                     setUser(user);
-
                     if (SQLiteLink != null) SQLiteLink.Login(user, access_token);
                     log_state = true;
-
                     Log.d("Client", "" + getLog_state());
                     return LOG_SUCCEED;
                 } else return LOG_WRONG;
@@ -104,8 +105,8 @@ public class ClientUtils {
         }
     }
 
-    public static String GetUserInfo(){
-        String url = "https://www.ourbuaa.com/api/user/info";
+    public static String GetUserInfo() {
+        String url = HOST + "/user/info";
 
         if (log_state) {
 
@@ -132,7 +133,7 @@ public class ClientUtils {
 
     public static String ListNotification() {
 
-        String url = "https://www.ourbuaa.com/api/notification";
+        String url = HOST + "/notification";
 
         if (log_state) {
 
@@ -160,7 +161,7 @@ public class ClientUtils {
 
     public static String ListStaredNotification() {
 
-        String url = "https://www.ourbuaa.com/api/notification/stared";
+        String url = HOST + "/notification/stared";
 
         if (log_state) {
 
@@ -187,7 +188,7 @@ public class ClientUtils {
 
     public static String ShowNotification(long id) {
 
-        String url = "https://www.ourbuaa.com/api/notification/" + id;
+        String url = HOST + "/notification/" + id;
 
         if (log_state) {
 
@@ -214,7 +215,7 @@ public class ClientUtils {
 
     public static String StarNotification(long id) {
 
-        String url = "https://www.ourbuaa.com/api/notification/" + id + "/star";
+        String url = HOST + "/notification/" + id + "/star";
 
         if (log_state) {
 
@@ -243,7 +244,7 @@ public class ClientUtils {
 
     public static String UnstarNotification(long id) {
 
-        String url = "https://www.ourbuaa.com/api/notification/" + id + "/unstar";
+        String url = HOST + "/notification/" + id + "/unstar";
 
         if (log_state) {
 
@@ -271,7 +272,7 @@ public class ClientUtils {
 
     public static Boolean TestToken(String access_token) {
 
-        String url = "https://www.ourbuaa.com/api/notification";
+        String url = HOST + "/notification";
 
 
         Map<String, String> params = new HashMap<>();
@@ -305,10 +306,10 @@ public class ClientUtils {
             String t = "";
             try {
                 if (SQLiteLink != null)
-                SQLiteLink.UnStarAllNotifications();
+                    SQLiteLink.UnStarAllNotifications();
                 JSONArray mJSONArray = new JSONArray(msg);
-                for(int i=0;i<mJSONArray.length();i++){
-                    JSONObject mJSONObject= mJSONArray.getJSONObject(i);
+                for (int i = 0; i < mJSONArray.length(); i++) {
+                    JSONObject mJSONObject = mJSONArray.getJSONObject(i);
                     long id = mJSONObject.getLong("id");
                     SQLiteLink.StarNotification(id);
 

@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yanzhenjie.recyclerview.swipe.Closeable;
@@ -42,8 +43,7 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
    private BUAA_RecyclerViewAdapter buaa_recyclerViewAdapter;
- //   private RecyclerView.OnScrollListener onScrollListener;
- //   private RecyclerView recyclerView;
+
     private ContentProvider provider, trash;
     private SwipeMenuRecyclerView mSwipeMenuRecyclerView;
     private ItemTouchHelper itemTouchHelper;
@@ -52,9 +52,10 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
     private View view;
     private Context mContext;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    //加载更多调下面这个类
+    private RecyclerView.OnScrollListener mOnScrollListener = new ListScrollListener();
    // private MenuAdapter mMenuAdapter;
-    private List<String> mDataList;
-    private int size = 50;
+
 
     public void setSqLiteUtils(SQLiteUtils sqLiteUtils) {
         this.sqLiteUtils = sqLiteUtils;
@@ -111,10 +112,7 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
         // 设置菜单Item点击监听。
         mSwipeMenuRecyclerView.setSwipeMenuItemClickListener(menuItemClickListener);
 
-       /* mDataList = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            mDataList.add("我是第" + i + "个。");
-        }*/
+
 
 
         //mMenuAdapter = new MenuAdapter(mDataList);
@@ -125,11 +123,14 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
             buaa_recyclerViewAdapter = new BUAA_RecyclerViewAdapter(provider);
         buaa_recyclerViewAdapter.setOnClickListener(this);
         ((BUAAContentProvider) provider).setBuaa_recyclerViewAdapter(buaa_recyclerViewAdapter);
-        //buaaItemTouchHelperCallback = new BUAAItemTouchHelperCallback(buaa_recyclerViewAdapter);
+        ((BUAAContentProvider)provider).updateNotifications();
+        buaaItemTouchHelperCallback = new BUAAItemTouchHelperCallback(buaa_recyclerViewAdapter);
         buaa_recyclerViewAdapter.setGarbageCollector(this);
         mSwipeMenuRecyclerView.setAdapter(buaa_recyclerViewAdapter);
-        //itemTouchHelper = new ItemTouchHelper(buaaItemTouchHelperCallback);
-        //itemTouchHelper.attachToRecyclerView(mSwipeMenuRecyclerView);
+
+    //    Toast.makeText(mContext,((Integer)buaa_recyclerViewAdapter.getItemCount()).toString(),Toast.LENGTH_SHORT).show();
+        itemTouchHelper = new ItemTouchHelper(buaaItemTouchHelperCallback);
+        itemTouchHelper.attachToRecyclerView(mSwipeMenuRecyclerView);
        /* recyclerView = (RecyclerView) view.findViewById(R.id.NoticeList);
         if (mColumnCount <= 1) {
             recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -173,8 +174,8 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
 
         if (context instanceof OnListFragmentInteractionListener) {
             mListener = (OnListFragmentInteractionListener) context;
-            //if (buaa_recyclerViewAdapter != null)
-            //    buaa_recyclerViewAdapter.setOnListFragmentInteractionListener(mListener);
+            if (buaa_recyclerViewAdapter != null)
+                buaa_recyclerViewAdapter.setOnListFragmentInteractionListener(mListener);
         } else {
            // throw new RuntimeException(context.toString()
              //       + " must implement OnListFragmentInteractionListener");
@@ -275,13 +276,7 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
         this.provider = provider;
     }
 
-   public void setTrash(ContentProvider trash) {
-        this.trash = trash;
-    }
 
-    public void setAdapter(BUAA_RecyclerViewAdapter adapter) {
-        buaa_recyclerViewAdapter = adapter;
-    }
     /**
      * 刷新监听。
      */
@@ -292,25 +287,9 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
         }
     };
 
-    /**
-     * 加载更多
-     */
-    private RecyclerView.OnScrollListener mOnScrollListener = new ListScrollListener();
-  /*  private RecyclerView.OnScrollListener mOnScrollListener = new RecyclerView.OnScrollListener() {
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            if (!recyclerView.canScrollVertically(1)) {// 手指不能向上滑动了
-                // TODO 这里有个注意的地方，如果你刚进来时没有数据，但是设置了适配器，这个时候就会触发加载更多，需要开发者判断下是否有数据，如果有数据才去加载更多。
 
-                Toast.makeText(mContext, "滑到最底部了，去加载更多吧！", Toast.LENGTH_SHORT).show();
-                size += 50;
-                for (int i = size - 50; i < size; i++) {
-                    mDataList.add("我是第" + i + "个。");
-                }
-                mMenuAdapter.notifyDataSetChanged();
-            }
-        }
-    };*/
+
+
 
     /**
      * 菜单创建器。在Item要创建菜单的时候调用。
@@ -394,9 +373,9 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
             closeable.smoothCloseMenu();// 关闭被点击的菜单。
 
             if (direction == SwipeMenuRecyclerView.RIGHT_DIRECTION) {
-                Toast.makeText(mContext, "list第" + adapterPosition + "; 右侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(mContext, "list第" + adapterPosition + "; 右侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
             } else if (direction == SwipeMenuRecyclerView.LEFT_DIRECTION) {
-                Toast.makeText(mContext, "list第" + adapterPosition + "; 左侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(mContext, "list第" + adapterPosition + "; 左侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
             }
 
             // TODO 推荐调用Adapter.notifyItemRemoved(position)，也可以Adapter.notifyDataSetChanged();

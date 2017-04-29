@@ -2,112 +2,130 @@
 <items version="2" >
 
     <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.2.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-15217dd2ce811caf3a6f8b5d4088b92307cc0595.jar" />
+        jar="C:\Users\alan_yang\.android\build-cache\6231616c3ff7c8bb76c5e9dfc1e70de1ce72a951\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-8b1b29bb86db327bbedc2b265bd3b7cbcbd1a128.jar" />
     </item>
     <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
-        revision="24.0.0"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-ad22d01cd8a505910acdf14d6e54bd0eb687c1d3.jar" />
+        jar="C:\Users\alan_yang\.android\build-cache\733ee8258933599e49127da2acbf99083871c346\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-2d604b82f53261ca01347355358723d68a5a4f26.jar" />
     </item>
     <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.2.0\jars\classes.jar"
-        revision="24.0.0"
+        jar="C:\Users\alan_yang\.android\build-cache\a712ebe1f4a4474c776e2b250947bbced364950f\output\jars\classes.jar"
+        revision="25.0.0"
         sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-18c71d88d90c8d52f6bddff98aa340815e8255ed.jar" />
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-8a3ed2258de0ae82b5e910178f4b90104372bd39.jar" />
     </item>
     <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.4.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-fe1150765fb71b8266536afc4fe4c548e1966985.jar" />
+        jar="C:\Users\alan_yang\.android\build-cache\733ee8258933599e49127da2acbf99083871c346\output\jars\libs\internal_impl-24.2.1.jar"
+        revision="25.0.0"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\internal_impl-24.2.1-3498a953f255d3601bd602b38394f2743d0da594.jar" />
     </item>
     <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.4.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-63cfc1b4dffe7049a5a6ad9b5084effb51c8f336.jar" />
+        jar="C:\Users\alan_yang\.android\build-cache\99f66f86fd3cb65392392fd763371b466b1546d3\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-fa090a63f3f2d342eb0f72279e8d2a60fab4107c.jar" />
     </item>
     <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.2.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="152de8da301561dcb0946471697a420d8f7a68c5">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-520f0ba214a747460759bf1d6d2f79e95faa31e8.jar" />
+        jar="C:\Users\alan_yang\.android\build-cache\cc5baeafe68e8883f89ce470253765dd28a68e8e\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-3145855f0acfb198644124d2fcd065f58dbf640b.jar" />
     </item>
     <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.2.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-d82f5c3b40a043cbdcded3cd66e6abbd2c818bba.jar" />
+        jar="C:\Users\alan_yang\.android\build-cache\6a46b130a937b078ee041156a4c44e7d58bd6599\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-5e7d4e405451644802c024ef384883aa1c879ef3.jar" />
     </item>
     <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.2.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-6151862f43d1f429725cfa944c3bac34f7157a43.jar" />
+        jar="C:\Users\alan_yang\.android\build-cache\2ac4e476b2285a17c2011e4c0a444ca9dd8165b5\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-ea3c6044f09d4c144a1401426c5720a56512d4e9.jar" />
     </item>
     <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.2.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-5040bf90367ac28c1afd3ca55ecffa838980600d.jar" />
-    </item>
-    <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.2.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-a676280938e17539177730f0ccb22a1b6d0d6094.jar" />
-    </item>
-    <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.yanzhenjie\recyclerview-swipe\1.0.4\jars\classes.jar"
-        revision="24.0.0"
-        sha1="4d51d7103be1421fe61eb3feb05911cb7cca96a3">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-0b035e43100aec8e4ab807ab4dccfee8d42d3763.jar" />
-    </item>
-    <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.2.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-bb0fbc8e99546d8092ab590a3dd361f933ff9a02.jar" />
-    </item>
-    <item
-        jar="E:\SDKs\AndroidSDKs\platforms\android-24\android.jar"
-        revision="24.0.0"
-        sha1="d49cc0972df7adf495d3ad3d0cf71c0ec517ace4">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackRuntimeLibraries\debug\jars\8000\40\android-bb99ec226496706de83f6fc2d02f7d0eea0a913e.jar" />
-    </item>
-    <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.2.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-ba6da23da15547fd1548b0d792d8ad5d336b73b6.jar" />
-    </item>
-    <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.4.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-05cc59d94763dacd7b5d36afd633fbf0311bede4.jar" />
-    </item>
-    <item
-        jar="E:\SDKs\AndroidSDKs\extras\android\m2repository\com\android\support\support-annotations\25.2.0\support-annotations-25.2.0.jar"
-        revision="24.0.0"
+        jar="G:\androidsdk\extras\android\m2repository\com\android\support\support-annotations\25.2.0\support-annotations-25.2.0.jar"
+        revision="25.0.0"
         sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\support-annotations-25.2.0-f54d610432f7c2f93a26f16b904232228276034f.jar" />
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\support-annotations-25.2.0-c90230b3bd14920eb6fbdc351d616a7ae4586263.jar" />
     </item>
     <item
-        jar="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.2.0\jars\classes.jar"
-        revision="24.0.0"
-        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-03e91222ad31e985bb88cffe307d1cea39910fce.jar" />
+        jar="C:\Users\alan_yang\.android\build-cache\ececbdce1acc1092f7c05ec4cd219bcce5e45033\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-d07241a9911e6595b9bca9fe1ea6510e710f0b31.jar" />
     </item>
     <item
-        jar="E:\SDKs\AndroidSDKs\platforms\android-24\optional\org.apache.http.legacy.jar"
-        revision="24.0.0"
+        jar="C:\Users\alan_yang\.android\build-cache\49092d286804455ae92a7f1b1ac754a15c2ed5cd\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-64803396913171586a232e05fa2ee5366e976b91.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.android\build-cache\439bf04fea5b3dfb7e39419d89224628a3e3c522\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-95be32b776ffe181ba3a26c7ed9431d7e545a03a.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.android\build-cache\76a0076e6d8a5592e3ff13ab589d3120ad1ec89c\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-da3f603d01bd836066d552a89279c4f5d6fe790d.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.android\build-cache\9270ea24982d7d976750227b92cbe195ae557ffe\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-f81008c50ab866556523e361760e6d6a5060a0ef.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.android\build-cache\8f59f9146f7d4978c3a9e80b6449e649782a8627\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="4d51d7103be1421fe61eb3feb05911cb7cca96a3">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-03762b1f70f80a6d71703ff139162cac05a5c4f8.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.android\build-cache\6a46b130a937b078ee041156a4c44e7d58bd6599\output\jars\libs\internal_impl-24.2.1.jar"
+        revision="25.0.0"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\internal_impl-24.2.1-5a0e07e5f4a6b3036298e9079d4b6cfb08c95580.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.android\build-cache\6231616c3ff7c8bb76c5e9dfc1e70de1ce72a951\output\jars\libs\internal_impl-24.2.1.jar"
+        revision="25.0.0"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\internal_impl-24.2.1-6d3743ff017cf3501ffc62c7251b5c5a8b6e3f75.jar" />
+    </item>
+    <item
+        jar="G:\androidsdk\platforms\android-24\optional\org.apache.http.legacy.jar"
+        revision="25.0.0"
         sha1="fb7023e781abb70ed1b0442eb611fbed295cae84">
-        <dex dex="F:\CroxxWorks\AndroidStudioProjects\BUAAHELPER\app\build\intermediates\transforms\preJackRuntimeLibraries\debug\jars\8000\40\org.apache.http.legacy-be2b80ad74b93bc44027a0ae3e121b1c4d1fb34a.jar" />
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackRuntimeLibraries\debug\jars\8000\40\org.apache.http.legacy-1d2e5ead23b4752b91ecf44c2b45d78306f67a8f.jar" />
+    </item>
+    <item
+        jar="G:\androidsdk\platforms\android-24\android.jar"
+        revision="25.0.0"
+        sha1="d49cc0972df7adf495d3ad3d0cf71c0ec517ace4">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackRuntimeLibraries\debug\jars\8000\40\android-70651e1c8d1b9d0ee97e31916b8cb1015acfea74.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.android\build-cache\3ef30ef2cb8388f40f060859d2f473e917d5629b\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="152de8da301561dcb0946471697a420d8f7a68c5">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-856ee289db3b44d6a8a5652d66afe9557dc66cd9.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.android\build-cache\65aa1364a3cc4bd92aa4e7d57074fb553f28daea\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-c7a71ea87b0effbc7f3ecc060aeefb1f77209314.jar" />
     </item>
 
 </items>

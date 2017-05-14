@@ -439,7 +439,7 @@ public class MainActivity extends AppCompatActivity
                 NowTrash = false;
                 NowFav = false;
                 transaction.commit();
-            } else if (id == R.id.nav_trash) {
+            } /*else if (id == R.id.nav_trash) {
                 transaction = fm.beginTransaction();
 
                 transaction.hide(nowFragment);
@@ -448,7 +448,7 @@ public class MainActivity extends AppCompatActivity
                 NowTrash = true;
                 NowFav = false;
                 transaction.commit();
-            }
+            }*/
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -528,12 +528,12 @@ public class MainActivity extends AppCompatActivity
     String getFormUrl()  //填表，目前罗dalao还没做
     {
 
-        return "https://www.baidu.com/";
+        return "https://www.ourbuaa.com/mobile/account";
     }
     String getQueryUrl()  //事务查询，目前没有拿到具体内容
     {
 
-        return "https://www.sina.com/";
+        return "https://www.ourbuaa.com/mobile/account";
     }
     String getPersonalInfoUrl()  //个人信息
     {

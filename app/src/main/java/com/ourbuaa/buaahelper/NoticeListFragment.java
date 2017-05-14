@@ -303,7 +303,7 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
             int height = ViewGroup.LayoutParams.MATCH_PARENT;
 
             // 添加左侧的，如果不添加，则左侧不会出现菜单。
-            {
+           /* {
                 SwipeMenuItem addItem = new SwipeMenuItem(mContext)
                         .setBackgroundDrawable(R.drawable.selector_green)// 点击的背景。
                         .setImage(R.mipmap.ic_action_add) // 图标。
@@ -318,33 +318,33 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
                         .setHeight(height);
 
                 swipeLeftMenu.addMenuItem(closeItem); // 添加一个按钮到左侧菜单。
-            }
+            }*/
 
             // 添加右侧的，如果不添加，则右侧不会出现菜单。
             {
-                SwipeMenuItem deleteItem = new SwipeMenuItem(mContext)
+               /* SwipeMenuItem deleteItem = new SwipeMenuItem(mContext)
                         .setBackgroundDrawable(R.drawable.selector_red)
                         .setImage(R.mipmap.ic_action_delete)
                         .setText("删除") // 文字，还可以设置文字颜色，大小等。。
                         .setTextColor(Color.WHITE)
                         .setWidth(width)
-                        .setHeight(height);
-                swipeRightMenu.addMenuItem(deleteItem);// 添加一个按钮到右侧侧菜单。
+                        .setHeight(height);*/
+                /*swipeRightMenu.addMenuItem(deleteItem);// 添加一个按钮到右侧侧菜单。*/
 
-                SwipeMenuItem closeItem = new SwipeMenuItem(mContext)
+                /*SwipeMenuItem closeItem = new SwipeMenuItem(mContext)
                         .setBackgroundDrawable(R.drawable.selector_purple)
                         .setImage(R.mipmap.ic_action_close)
                         .setWidth(width)
                         .setHeight(height);
-                swipeRightMenu.addMenuItem(closeItem); // 添加一个按钮到右侧菜单。
+                swipeRightMenu.addMenuItem(closeItem); // 添加一个按钮到右侧菜单。*/
 
-                SwipeMenuItem addItem = new SwipeMenuItem(mContext)
+               /* SwipeMenuItem addItem = new SwipeMenuItem(mContext)
                         .setBackgroundDrawable(R.drawable.selector_green)
-                        .setText("添加")
+                        .setText("收藏")
                         .setTextColor(Color.WHITE)
                         .setWidth(width)
                         .setHeight(height);
-                swipeRightMenu.addMenuItem(addItem); // 添加一个按钮到右侧菜单。
+                swipeRightMenu.addMenuItem(addItem); // 添加一个按钮到右侧菜单。*/
             }
         }
     };
@@ -379,10 +379,11 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
             }
 
             // TODO 推荐调用Adapter.notifyItemRemoved(position)，也可以Adapter.notifyDataSetChanged();
-            if (menuPosition == 0) {// 删除按钮被点击。
-                buaa_recyclerViewAdapter.RemoveData(adapterPosition);
-                buaa_recyclerViewAdapter.notifyItemRemoved(adapterPosition);
-            }
+           // if (menuPosition == 0) {// 删除按钮被点击。
+               // sqLiteUtils.StarNotification(adapterPosition);
+                //buaa_recyclerViewAdapter.RemoveData(adapterPosition);
+                //buaa_recyclerViewAdapter.notifyItemRemoved(adapterPosition);
+            //}
         }
     };
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -66,7 +68,20 @@ public class DetailActivity extends Activity implements View.OnClickListener {
             textView_Detail_title.setText(j.getString("title"));
             textView_Detail_updateat.setText(SQLiteUtils.TimeStamp2Time(j.getLong("updated_at")));
             textView_Detail_content.setText(Html.fromHtml(j.getString("content")));
-            textView_Detail_file.setText("附件："+j.getString("files"));
+
+
+            String file_str = "<p>附件：</p>";
+            JSONArray mJSONArray = new JSONArray(j.getString("files"));
+            for (int i = 0; i < mJSONArray.length(); i++) {
+                JSONObject mJSONObject = mJSONArray.getJSONObject(i);
+                String title = mJSONObject.getString("title");
+                String href = mJSONObject.getString("href");
+                file_str += "<p><a href=\"" + href + "\">" + title + "</a></p>";
+            }
+
+
+            textView_Detail_file.setText(Html.fromHtml(file_str));
+            textView_Detail_file.setMovementMethod(LinkMovementMethod.getInstance());
             if (j.getLong("star") == 1) {
                 Fav.setImageResource(R.drawable.ic_star_black_24dp);
                 FAV = true;
@@ -122,11 +137,9 @@ public class DetailActivity extends Activity implements View.OnClickListener {
         Fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!ClientUtils.getLog_state())
-                {
-                    Toast.makeText(getApplicationContext(),"当前处于离线模式，无法进行此操作",Toast.LENGTH_SHORT).show();
-                }
-                else {
+                if (!ClientUtils.getLog_state()) {
+                    Toast.makeText(getApplicationContext(), "当前处于离线模式，无法进行此操作", Toast.LENGTH_SHORT).show();
+                } else {
                     if (!FAV) {
                         Fav.setImageResource(R.drawable.ic_star_black_24dp);
                         FAV = true;
@@ -134,6 +147,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
                             @Override
                             public void run() {
                                 ClientUtils.StarNotification(id);
+                                SQLiteLink.StarNotification(id);
                             }
                         }).start();
                         //第一次点击，收藏操作
@@ -144,6 +158,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
                             @Override
                             public void run() {
                                 ClientUtils.UnstarNotification(id);
+                                SQLiteLink.UnStarNotification(id);
                             }
                         }).start();
                         //第二次点击，取消收藏

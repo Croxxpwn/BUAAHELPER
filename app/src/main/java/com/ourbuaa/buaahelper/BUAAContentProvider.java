@@ -131,7 +131,7 @@ public class BUAAContentProvider extends ContentProvider {
 
     protected CommonItemForList createCommonItemForList(long id, String label, String imageURI, long timestamp, long department, long read) {
 
-        Date time = new Date(timestamp);
+        Date time = new Date(timestamp*1000);
         return new CommonItemForList(id, label, imageURI, time, department, read);
     }
 

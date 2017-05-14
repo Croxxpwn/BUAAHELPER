@@ -375,7 +375,7 @@ public class SQLiteUtils {
 
 
     public static long GetTimeStamp() {
-        long timestamp = System.currentTimeMillis() / 1000;//精确到秒
+        long timestamp = System.currentTimeMillis() ;//精确到秒
         //String  str=String.valueOf(timestamp);
         return timestamp;
     }

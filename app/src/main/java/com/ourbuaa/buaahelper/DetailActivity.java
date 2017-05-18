@@ -1,6 +1,14 @@
 package com.ourbuaa.buaahelper;
 
 import android.app.Activity;
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
+import android.opengl.Visibility;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +19,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +27,11 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DetailActivity extends Activity implements View.OnClickListener {
 
@@ -30,8 +44,9 @@ public class DetailActivity extends Activity implements View.OnClickListener {
 
     protected long id;
     private boolean FAV;
-
-
+    private long downloadRefs[] = null;
+    private int downloadStatus[] = null;
+    private HashMap<Long,Integer> downLoadRefToID = new HashMap<Long,Integer>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +65,8 @@ public class DetailActivity extends Activity implements View.OnClickListener {
         getLast = (ImageButton) findViewById(R.id.getBefore);
 
         RelativeLayout Bottom_bar = (RelativeLayout) findViewById(R.id.bottom_bar_detail_act);
-
+        LinearLayout DownLoadList = (LinearLayout) findViewById(R.id.DownLoadList);
+        ArrayList<Button> buttons = new ArrayList<Button>();
         ReturnToMain = (ImageButton) findViewById(R.id.goback);
         ReturnToMain.setOnClickListener(this);
         //Button button = (Button) findViewById(R.id.back);
@@ -72,16 +88,80 @@ public class DetailActivity extends Activity implements View.OnClickListener {
 
             String file_str = "<p>附件：</p>";
             JSONArray mJSONArray = new JSONArray(j.getString("files"));
+            downloadRefs = new long[mJSONArray.length()*2];
+            downloadStatus = new int[mJSONArray.length()*2];
+            IntentFilter filter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+
+            BroadcastReceiver receiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    long reference = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+                    int id = downLoadRefToID.get(reference);
+                    downloadStatus[id]=2;
+
+                }
+            };
+            registerReceiver(receiver, filter);
+
             for (int i = 0; i < mJSONArray.length(); i++) {
+                downloadRefs[i] = -1;
+                downloadStatus[i] = 0;
+                // 0--never touched
+                //1--downloading
+                //2--download task complete
                 JSONObject mJSONObject = mJSONArray.getJSONObject(i);
                 String title = mJSONObject.getString("title");
                 String href = mJSONObject.getString("href");
+                Button button = new Button(this);
+                button.setText(title);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int id=buttons.indexOf(button);
+                        //Toast.makeText(getApplicationContext(),"now:"+(Integer)(downloadStatus[id]),Toast.LENGTH_LONG);
+                        if (downloadStatus[id]==0) {
+                            String serviceString = Context.DOWNLOAD_SERVICE;
+                            DownloadManager downloadManager;
+                            downloadManager = (DownloadManager) getSystemService(serviceString);
+
+                            downloadStatus[id] = 1;
+
+                            Uri uri = Uri.parse(href);
+                            DownloadManager.Request request = new DownloadManager.Request(uri);
+                            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                            long reference = downloadManager.enqueue(request);
+                            downloadRefs[id] = reference;
+                            downLoadRefToID.put(reference,id);
+                        }
+                        if (downloadStatus[id]==2)
+                        {
+                            String serviceString = Context.DOWNLOAD_SERVICE;
+                            DownloadManager downloadManager;
+                            downloadManager = (DownloadManager) getSystemService(serviceString);
+                            try {
+                                downloadManager.openDownloadedFile(downloadRefs[id]);
+                            }catch(FileNotFoundException e)
+                            {
+                                downloadStatus[id]=0;
+                                new  AlertDialog.Builder(getApplicationContext())
+                                        .setTitle("文件下载失败" )
+
+                                        .setPositiveButton("是" ,  null )
+
+                                        .show();
+                            }
+                        }
+                    }
+                });
+                buttons.add(button);
+                DownLoadList.addView(button);
+
                 file_str += "<p><a href=\"" + href + "\">" + title + "</a></p>";
             }
 
 
-            textView_Detail_file.setText(Html.fromHtml(file_str));
-            textView_Detail_file.setMovementMethod(LinkMovementMethod.getInstance());
+            //textView_Detail_file.setText(Html.fromHtml(file_str));
+            //textView_Detail_file.setMovementMethod(LinkMovementMethod.getInstance());
             if (j.getLong("star") == 1) {
                 Fav.setImageResource(R.drawable.ic_star_black_24dp);
                 FAV = true;

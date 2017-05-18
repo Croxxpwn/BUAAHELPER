@@ -12,11 +12,14 @@
 
     <include
         android:id="@+id/titlebarForDetail"
+
         layout="@layout/titlebar_for_detail_activity" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:id = "@+id/ScrollContent"
         android:layout_below="@+id/Detail_file">
        <LinearLayout
@@ -45,7 +48,7 @@
         android:textAlignment="textEnd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_marginEnd="20dp"
 
         android:layout_below="@+id/titlebarForDetail"
 

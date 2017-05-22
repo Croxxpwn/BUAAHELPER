@@ -14,6 +14,12 @@
         <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\javax.inject-1-7f4f82ba0c50d2d01d8ece39a1f46a1a4f1a061f.jar" />
     </item>
     <item
+        jar="C:\Users\alan_yang\.android\build-cache\05efb24a062e20f9985b3254342379b0cb68dd2e\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="18d3eda98bb78c7a10a61d4973d3e40111a1f507">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-e111ca3e94b47dd253e25c6fa5013d28e812a57b.jar" />
+    </item>
+    <item
         jar="C:\Users\alan_yang\.android\build-cache\8f59f9146f7d4978c3a9e80b6449e649782a8627\output\jars\classes.jar"
         revision="25.0.0"
         sha1="4d51d7103be1421fe61eb3feb05911cb7cca96a3">
@@ -72,6 +78,12 @@
         revision="25.0.0"
         sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
         <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\internal_impl-24.2.1-3498a953f255d3601bd602b38394f2743d0da594.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.android\build-cache\248466d460d12386126d1afef4d766cb6cb87e09\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="efd31bdfa2bc81f833a4d60c85d7d4ec0ae92d1a">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-9badc83bdcb0e59dd9eded451405ac3eb810271c.jar" />
     </item>
     <item
         jar="C:\Users\alan_yang\.android\build-cache\6231616c3ff7c8bb76c5e9dfc1e70de1ce72a951\output\jars\libs\internal_impl-24.2.1.jar"
@@ -198,6 +210,12 @@
         revision="25.0.0"
         sha1="7e11799d8a26bfa5d48acafe012ee5545b9bf468">
         <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\androidTest\debug\jars\8000\1f\classes-3a3f296751809536055345eb8446f38a31f118bb.jar" />
+    </item>
+    <item
+        jar="C:\Users\alan_yang\.android\build-cache\9b9287a9a5bddd9873bbde5204b94956dcf44ae2\output\jars\classes.jar"
+        revision="25.0.0"
+        sha1="d9ecde39b460470e655de6e47c05573d2d5a8bfb">
+        <dex dex="G:\Project\BH\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-070ebef4d219b8cec14f76fb76544f247a1e3ad9.jar" />
     </item>
     <item
         jar="C:\Users\alan_yang\.android\build-cache\bc4a1372661a84bc45e4a3eb32a0497ffa46f77f\output\jars\classes.jar"

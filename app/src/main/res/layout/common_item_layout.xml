@@ -4,57 +4,71 @@
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200px"
         android:id="@+id/container_inner_item"
         android:orientation="horizontal"
         tools:showIn="@layout/item_demo"
 
         >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:id="@+id/ListItemLayout"
 
-        >
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/ListItemLayout"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/list_icon">
+            android:orientation="horizontal"
 
-            <ImageView
-                android:id="@+id/image_noice_icon"
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
+            >
+
+            <RelativeLayout
+                android:id="@+id/list_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/image_noice_icon"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
 
 
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:src="@mipmap/d1" />
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/d1" />
+            </RelativeLayout>
+             <LinearLayout
+                 android:layout_height="match_parent"
+                 android:layout_width="match_parent"
+                 android:gravity="center_vertical"
+                 android:layout_toEndOf="@+id/list_icon"
+                 android:orientation="vertical">
+            <TextView
+                android:id="@+id/txt_label_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/txt_date_time"
+
+
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                tools:text="Item Number One" />
+
+            <TextView
+                android:id="@+id/txt_date_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="Item Number One"
+                android:layout_toEndOf="@+id/list_icon"
+                 />
+            </LinearLayout>
         </RelativeLayout>
-    <TextView
-        android:id="@+id/txt_label_item"
-        android:layout_toEndOf="@id/list_icon"
-        android:layout_toRightOf="@id/list_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        tools:text="Item Number One" />
 
-    <TextView
-        android:id="@+id/txt_date_time"
-        android:layout_toEndOf="@id/list_icon"
-        android:layout_toRightOf="@id/list_icon"
-        android:layout_below="@id/txt_label_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        tools:text="Item Number One" />
-    </RelativeLayout>
-
-    <LinearLayout
+        <LinearLayout
         android:layout_width="wrap_content"
         android:clickable="true"
         android:id="@+id/SwipeMenuLayout"

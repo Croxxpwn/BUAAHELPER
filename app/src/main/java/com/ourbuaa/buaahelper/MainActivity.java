@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import org.json.JSONObject;
 
@@ -55,7 +57,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(android.R.style.Theme_Light_NoTitleBar);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -70,8 +75,6 @@ public class MainActivity extends AppCompatActivity
         fm = getFragmentManager();
         hasLogged = false;
 
-        //准备垃圾箱
-        //buaaTrashContentProvider=DataUtils.getContentProvider(BUAAContentProvider.TRASH);
 
 
         bottombar = (RelativeLayout) findViewById(R.id.bottom_bar_main_act);

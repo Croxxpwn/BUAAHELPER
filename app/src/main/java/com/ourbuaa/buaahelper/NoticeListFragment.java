@@ -15,9 +15,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.yanzhenjie.recyclerview.swipe.Closeable;
 import com.yanzhenjie.recyclerview.swipe.OnSwipeMenuItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
@@ -93,6 +95,7 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
          view = inflater.inflate(R.layout.fragment_item_list, container, false);
+
         // Set the adapter
         mContext = view.getContext();
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
@@ -165,7 +168,12 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
                 .setColorResource(R.color.split)
                 .build();
         mRecyclerView.addItemDecoration(divider);*/
-
+        // Set the search bar
+        MaterialSearchBar materialSearchBar = (MaterialSearchBar) view.findViewById(R.id.searchBar);
+        CustomSuggestionsAdapter customSuggestionsAdapter = new CustomSuggestionsAdapter(inflater);
+        List<itemForSeachBar> suggestions = new ArrayList<>();
+        customSuggestionsAdapter.setSuggestions(suggestions);
+        materialSearchBar.setCustomSuggestionAdapter(customSuggestionsAdapter);
         return view;
     }
 

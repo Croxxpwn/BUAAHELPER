@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dpv="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border">
+    <ImageView
+        android:layout_marginLeft="20dp"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:src="@mipmap/ic_get_app_black_24dp"
+        android:id="@+id/DLmark"/>
+
+    <TextView
+        android:layout_height="40dp"
+        android:layout_width="100dp"
+        android:id="@+id/download_title"
+        android:textAlignment="center"
+        android:maxLines="2"
+        android:ellipsize="end"
+        >
+        </TextView>
+</LinearLayout>

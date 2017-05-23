@@ -1,11 +1,9 @@
 package com.ourbuaa.buaahelper;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.widget.Toast;
 
 /**
  * Created by alan_yang on 2017/1/29.
@@ -30,7 +28,7 @@ public class BUAAItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-        if (direction == ItemTouchHelper.LEFT ) {
+        if (direction == ItemTouchHelper.LEFT) {
 
             madapter.RemoveData(viewHolder.getAdapterPosition());
             madapter.notifyItemRemoved(viewHolder.getAdapterPosition());
@@ -60,14 +58,14 @@ public class BUAAItemTouchHelperCallback extends ItemTouchHelper.Callback {
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         int dragFlags = 0;
-        int swipeFlags =  ItemTouchHelper.LEFT;
+        int swipeFlags = ItemTouchHelper.LEFT;
         return makeMovementFlags(dragFlags, swipeFlags);
     }
 
 
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
-       super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 
     }
 

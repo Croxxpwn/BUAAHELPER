@@ -4,12 +4,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -19,6 +16,7 @@ import com.yanzhenjie.recyclerview.swipe.SwipeMenuAdapter;
 
 import java.lang.reflect.Field;
 import java.util.List;
+
 /**
  * Created by alan_yang on 2017/1/21.
  */
@@ -26,14 +24,15 @@ import java.util.List;
 public class BUAA_RecyclerViewAdapter extends SwipeMenuAdapter<BUAA_RecyclerViewAdapter.ListItemViewHolder> {
 
 
-    private  List<CommonItemForList> items;
-    private  NoticeListFragment.OnListFragmentInteractionListener Listener;
+    private List<CommonItemForList> items;
+    private NoticeListFragment.OnListFragmentInteractionListener Listener;
     private OnClickListener onClickListener;
     private ContentProvider provider;
     private GarbageCollector garbageCollector;
+
     BUAA_RecyclerViewAdapter(ContentProvider provider) {
 
-        if (provider == null ) {
+        if (provider == null) {
             throw new IllegalArgumentException(
                     "Data must not be null");
         }
@@ -41,6 +40,7 @@ public class BUAA_RecyclerViewAdapter extends SwipeMenuAdapter<BUAA_RecyclerView
         this.items = provider.getDataList();
         this.Listener = null;
     }
+
     public GarbageCollector getGarbageCollector() {
         return garbageCollector;
     }
@@ -48,12 +48,15 @@ public class BUAA_RecyclerViewAdapter extends SwipeMenuAdapter<BUAA_RecyclerView
     public void setGarbageCollector(GarbageCollector garbageCollectioner) {
         this.garbageCollector = garbageCollectioner;
     }
+
     public OnClickListener getOnClickListener() {
         return onClickListener;
     }
+
     public void setOnClickListener(OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }
+
     public NoticeListFragment.OnListFragmentInteractionListener getListener() {
         return Listener;
     }
@@ -70,9 +73,8 @@ public class BUAA_RecyclerViewAdapter extends SwipeMenuAdapter<BUAA_RecyclerView
         this.provider = provider;
     }
 
-    public void setOnListFragmentInteractionListener(NoticeListFragment.OnListFragmentInteractionListener mlistener)
-    {
-            this.Listener = mlistener;
+    public void setOnListFragmentInteractionListener(NoticeListFragment.OnListFragmentInteractionListener mlistener) {
+        this.Listener = mlistener;
     }
 
 
@@ -96,6 +98,17 @@ public class BUAA_RecyclerViewAdapter extends SwipeMenuAdapter<BUAA_RecyclerView
             final ListItemViewHolder viewHolder, int position) {
         viewHolder.itemForList = items.get(position);
         viewHolder.label.setText(viewHolder.itemForList.label);
+        int[] status = viewHolder.itemForList.getIDToStatusImage();
+        if (status!=null)
+        {
+           // int len=status.length;
+            for (int id:status) {
+                ImageView imageView = new ImageView(viewHolder.StatusContainer.getContext());
+                imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                imageView.setImageResource(id);
+                viewHolder.StatusContainer.addView(imageView);
+            }
+        }
         if (viewHolder.itemForList.isread()) viewHolder.label.setTextColor(Color.GRAY);
         String dateStr = DateUtils.formatDateTime(
                 viewHolder.label.getContext(),
@@ -107,7 +120,7 @@ public class BUAA_RecyclerViewAdapter extends SwipeMenuAdapter<BUAA_RecyclerView
             field.setAccessible(true);
             R.mipmap mipmap = new R.mipmap();
             Object oId = field.get(mipmap);
-            int id =  (Integer) oId;
+            int id = (Integer) oId;
             viewHolder.icon.setImageResource(id);
         } catch (Exception e) {
             e.printStackTrace();
@@ -119,30 +132,55 @@ public class BUAA_RecyclerViewAdapter extends SwipeMenuAdapter<BUAA_RecyclerView
         return items.size();
     }
 
-     class ListItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-         TextView label;
-         TextView dateTime;
-         ImageView icon;
-         View view;
-         CommonItemForList itemForList;
-         RelativeLayout mItemLayout;
-         LinearLayout ContainerLayout,mSwipeMenuLayout;
+    public void RemoveData(int position) {
+        if (garbageCollector != null) {
+            garbageCollector.OnDataRemoved(items.get(position), position);
+        }
+    }
 
-   //      private int mScreenWidth;	// 屏幕宽度
-    //     private int mDownX;			// 按下点的x值
-    //     private int mDownY;			// 按下点的y值
-    //     private int mDeleteBtnWidth;// 删除按钮的宽度
+    public void Update(int p) {
+        items.clear();
+        items = provider.getDataList();
+    }
+
+    public interface OnClickListener {
+        void OnItemClick(CommonItemForList itemForList, int pos);
+
+        void OnItemClick(int pos);
+
+        void OnDeleteBtnClick(int pos);
+
+        void OnFavoriteBtnClick(int pos);
+    }
+
+    public interface GarbageCollector {
+        void OnDataRemoved(CommonItemForList itemForList, int position);
+    }
+
+    class ListItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView label;
+        TextView dateTime;
+        ImageView icon;
+        View view;
+        CommonItemForList itemForList;
+        RelativeLayout mItemLayout;
+        LinearLayout ContainerLayout, mSwipeMenuLayout,StatusContainer;
+
+        //      private int mScreenWidth;	// 屏幕宽度
+        //     private int mDownX;			// 按下点的x值
+        //     private int mDownY;			// 按下点的y值
+        //     private int mDeleteBtnWidth;// 删除按钮的宽度
 
 //         private boolean isDeleteShown;	// 删除按钮是否正在显示
 
-//         private ViewGroup mPointChild;	// 当前处理的item
-  //       private LinearLayout.LayoutParams mLayoutParams;	// 当前处理的item的LayoutParams
+        //         private ViewGroup mPointChild;	// 当前处理的item
+        //       private LinearLayout.LayoutParams mLayoutParams;	// 当前处理的item的LayoutParams
         public ListItemViewHolder(View itemView) {
             super(itemView);
             view = itemView.findViewById(R.id.container_inner_item);
             Context context = itemView.getContext();
- //           WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
- //           DisplayMetrics dm = new DisplayMetrics();
+            //           WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+            //           DisplayMetrics dm = new DisplayMetrics();
 //            wm.getDefaultDisplay().getMetrics(dm);
 //            mScreenWidth = dm.widthPixels;
 //            view.setOnClickListener(this);
@@ -151,20 +189,21 @@ public class BUAA_RecyclerViewAdapter extends SwipeMenuAdapter<BUAA_RecyclerView
             icon = (ImageView) itemView.findViewById(R.id.image_noice_icon);
             mItemLayout = (RelativeLayout) itemView.findViewById(R.id.ListItemLayout);
             //mItemLayout.setOnClickListener(this);
-            mSwipeMenuLayout = (LinearLayout) itemView.findViewById(R.id.SwipeMenuLayout);
+            StatusContainer = (LinearLayout) itemView.findViewById(R.id.list_item_status);
             ContainerLayout = (LinearLayout) itemView.findViewById(R.id.container_inner_item);
 //            mLayoutParams = (LinearLayout.LayoutParams)ContainerLayout.getLayoutParams();
-  //          mLayoutParams.width = mScreenWidth;
-            itemView.findViewById(R.id.SwipeButtonDelete).setOnClickListener(this);
+            //          mLayoutParams.width = mScreenWidth;
+
             ContainerLayout.setOnClickListener(this);  //TAKE HEED OF THAT EVEN THE BACKGROUND COLOR OF THE CHILD VIEW WILL COVER THE FATHER VIEW, THE CLICK EVENT WILL BE CAPTURED FIRST BY FATHER
         }
-         @Override
-         public void onClick(View view) {
+
+        @Override
+        public void onClick(View view) {
             // if (onClickListener != null)
-             if (view.getId() == R.id.container_inner_item) {
-                 int pos = getAdapterPosition();
-                 label.setTextColor(Color.GRAY);
-                 //onClickListener.OnItemClick(getAdapterPosition());
+            if (view.getId() == R.id.container_inner_item) {
+                int pos = getAdapterPosition();
+                label.setTextColor(Color.GRAY);
+                //onClickListener.OnItemClick(getAdapterPosition());
           /*       if (pos>=0)
                      onClickListener.OnItemClick(items.get(pos),pos);
                  else
@@ -173,71 +212,42 @@ public class BUAA_RecyclerViewAdapter extends SwipeMenuAdapter<BUAA_RecyclerView
                      pos = getAdapterPosition();
                      onClickListener.OnItemClick(items.get(pos),pos);
                  }*/
-                 onClickListener.OnItemClick(items.get(pos),pos);
-             }
-             if (view.getId() == R.id.SwipeButtonDelete)
-             {
-                 onClickListener.OnDeleteBtnClick(getAdapterPosition());
-             }
-             if (view.getId() == R.id.SwipeButtonFav)
-             {
-                 onClickListener.OnFavoriteBtnClick(getAdapterPosition());
-             }
-         }
-         public TextView getLabel() {
-             return label;
-         }
+                onClickListener.OnItemClick(items.get(pos), pos);
+            }
 
-         public TextView getDateTime() {
-             return dateTime;
-         }
-
-         public ImageView getIcon() {
-             return icon;
-         }
-
-         public CommonItemForList getItemForList() {
-             return itemForList;
-         }
-
-         public View getView() {
-             return view;
-         }
-
-         public RelativeLayout getmItemLayout() {
-             return mItemLayout;
-         }
-
-         public LinearLayout getmSwipeMenuLayout() {
-             return mSwipeMenuLayout;
-         }
-
-         public LinearLayout getContainerLayout() {
-             return ContainerLayout;
-         }
-     }
-    public void RemoveData(int position)
-    {
-        if (garbageCollector!=null)
-        {
-            garbageCollector.OnDataRemoved(items.get(position),position);
         }
-    }
-    public void Update(int p)
-    {
-        items.clear();
-        items = provider.getDataList();
-    }
-     public interface OnClickListener
-     {
-         void OnItemClick(CommonItemForList itemForList, int pos);
-         void OnItemClick(int pos);
-         void OnDeleteBtnClick(int pos);
-         void OnFavoriteBtnClick(int pos);
-     }
-    public interface GarbageCollector
-    {
-        void OnDataRemoved(CommonItemForList itemForList, int position);
+
+        public TextView getLabel() {
+            return label;
+        }
+
+        public TextView getDateTime() {
+            return dateTime;
+        }
+
+        public ImageView getIcon() {
+            return icon;
+        }
+
+        public CommonItemForList getItemForList() {
+            return itemForList;
+        }
+
+        public View getView() {
+            return view;
+        }
+
+        public RelativeLayout getmItemLayout() {
+            return mItemLayout;
+        }
+
+        public LinearLayout getmSwipeMenuLayout() {
+            return mSwipeMenuLayout;
+        }
+
+        public LinearLayout getContainerLayout() {
+            return ContainerLayout;
+        }
     }
 
 }

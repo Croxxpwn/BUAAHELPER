@@ -7,16 +7,15 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
-import android.os.Looper;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 public class NotificationUpdateQueryService extends Service {
+    private NotificationManager notifyManager;
+
+
     public NotificationUpdateQueryService() {
     }
-
-
-    private NotificationManager notifyManager;
 
     @Override
     public void onCreate() {
@@ -42,20 +41,20 @@ public class NotificationUpdateQueryService extends Service {
         final NotificationCompat.Builder builder;
 
         final NotificationCompat.Builder builder2;
-        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
-        builder = new NotificationCompat.Builder(this)
-                //设置小图标
-                .setSmallIcon(R.mipmap.logo_apphdpi_alpha)
-                //设置通知标题
-                .setContentTitle("BUAAHelper")
-                //设置通知内容
-                .setContentText("新通知！");
-        builder2= new NotificationCompat.Builder(this)
-                //设置小图标
-                .setSmallIcon(R.mipmap.logo_apphdpi_alpha)
-                //设置通知标题
-                .setContentTitle("BUAAHelper正在运行");
-        }else{
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            builder = new NotificationCompat.Builder(this)
+                    //设置小图标
+                    .setSmallIcon(R.mipmap.logo_apphdpi_alpha)
+                    //设置通知标题
+                    .setContentTitle("BUAAHelper")
+                    //设置通知内容
+                    .setContentText("新通知！");
+            builder2 = new NotificationCompat.Builder(this)
+                    //设置小图标
+                    .setSmallIcon(R.mipmap.logo_apphdpi_alpha)
+                    //设置通知标题
+                    .setContentTitle("BUAAHelper正在运行");
+        } else {
             builder = new NotificationCompat.Builder(this)
                     //设置小图标
                     .setSmallIcon(R.mipmap.logo_apphdpi)
@@ -63,7 +62,7 @@ public class NotificationUpdateQueryService extends Service {
                     .setContentTitle("BUAAHelper")
                     //设置通知内容
                     .setContentText("新通知！");
-            builder2= new NotificationCompat.Builder(this)
+            builder2 = new NotificationCompat.Builder(this)
                     //设置小图标
                     .setSmallIcon(R.mipmap.logo_apphdpi)
                     //设置通知标题

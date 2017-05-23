@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -22,64 +21,9 @@ import java.util.Date;
 public class SQLiteUtils {
 
     public final static String SQL_NONE = "SQL_NONE";
-
-
-    private class DatabaseHelper extends SQLiteOpenHelper {
-
-        //类没有实例化,是不能用作父类构造器的参数,必须声明为静态
-
-        private static final String name = "HelperDB"; //数据库名称
-
-        private static final int version = 1; //数据库版本
-
-        private DatabaseHelper(Context context) {
-
-            //第三个参数CursorFactory指定在执行查询时获得一个游标实例的工厂类,设置为null,代表使用系统默认的工厂类
-
-            super(context, name, null, version);
-
-        }
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-
-            final String SQL_TABLE_INIT_usertokens = "CREATE TABLE IF NOT EXISTS usertokens("
-                    + "updated_at INTEGER PRIMARY KEY NOT NULL,"
-                    + "user VARCHAR(50) NOT NULL,"
-                    + "access_token VARCHAR(100) NOT NULL"
-                    + ")";
-            final String SQL_TABLE_INIT_notification = "CREATE TABLE IF NOT EXISTS notifications("
-                    + "id INTEGER NOT NULL,"
-                    + "updated_at INTEGER NOT NULL,"
-                    + "owner VARCHAR(50) NOT NULL,"
-                    + "title VARCHAR(50),"
-                    + "author VARCHAR(50),"
-                    + "department INTEGER,"
-                    + "content VARCHAR(2000),"
-                    + "files VARCHAR(500),"
-                    + "star INTEGER DEFAULT 0,"
-                    + "show INTEGER DEFAULT 1,"
-                    + "read INTEGER DEFAULT 0,"
-                    + "UNIQUE(id,owner)"
-                    + ")";
-
-            db.execSQL(SQL_TABLE_INIT_usertokens);
-            db.execSQL(SQL_TABLE_INIT_notification);
-
-            Log.d("SQLite", "SQLite Online !");
-            Log.d("TimeStamp", "" + GetTimeStamp());
-
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        }
-    }
-
+    private static SQLiteUtils instance;
     private DatabaseHelper mDatabaseHelper;
     private SQLiteDatabase db;
-
-    private static SQLiteUtils instance;
 
     private SQLiteUtils(Context context) {
 
@@ -93,6 +37,23 @@ public class SQLiteUtils {
             instance = new SQLiteUtils(context);
         }
         return instance;
+    }
+
+    public static long GetTimeStamp() {
+        long timestamp = System.currentTimeMillis();//精确到秒
+        //String  str=String.valueOf(timestamp);
+        return timestamp;
+    }
+
+    public static String TimeStamp2Time(long timeLong) {
+        String time = "" + timeLong;
+        SimpleDateFormat sdr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        @SuppressWarnings("unused")
+        long lcc = Long.valueOf(time);
+        int i = Integer.parseInt(time);
+        String times = sdr.format(new Date(i * 1000L));
+        return times;
+
     }
 
     public void Login(String user, String access_token) {
@@ -171,7 +132,7 @@ public class SQLiteUtils {
     public void InsertNUpdateNotification(long id, long updated_at, String owner, String title, String author, long department, String content, String files) {
         final String SQL_DATA_REPLACEINTO_Notification = "REPLACE INTO notifications (id,updated_at,owner,title,author,content,files,department)VALUES(?,?,?,?,?,?,?,?)";
         try {
-            db.execSQL(SQL_DATA_REPLACEINTO_Notification, new Object[]{id, updated_at, owner, title, author, content, files,department});
+            db.execSQL(SQL_DATA_REPLACEINTO_Notification, new Object[]{id, updated_at, owner, title, author, content, files, department});
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -205,7 +166,7 @@ public class SQLiteUtils {
                     j.put("star", cursor.getLong(6));
                     j.put("show", cursor.getLong(7));
                     j.put("read", cursor.getLong(8));
-                    j.put("department",cursor.getLong(9));
+                    j.put("department", cursor.getLong(9));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -248,7 +209,7 @@ public class SQLiteUtils {
                     j.put("star", cursor.getLong(6));
                     j.put("show", cursor.getLong(7));
                     j.put("read", cursor.getLong(8));
-                    j.put("department",cursor.getLong(9));
+                    j.put("department", cursor.getLong(9));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -291,7 +252,7 @@ public class SQLiteUtils {
                     j.put("star", cursor.getLong(6));
                     j.put("show", cursor.getLong(7));
                     j.put("read", cursor.getLong(8));
-                    j.put("department",cursor.getLong(9));
+                    j.put("department", cursor.getLong(9));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -331,7 +292,7 @@ public class SQLiteUtils {
                     j.put("star", cursor.getLong(6));
                     j.put("show", cursor.getLong(7));
                     j.put("read", cursor.getLong(8));
-                    j.put("department",cursor.getLong(9));
+                    j.put("department", cursor.getLong(9));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -373,22 +334,56 @@ public class SQLiteUtils {
         db.execSQL(SQL_DATA_UPDATE, new Object[]{"" + id});
     }
 
+    private class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static long GetTimeStamp() {
-        long timestamp = System.currentTimeMillis() ;//精确到秒
-        //String  str=String.valueOf(timestamp);
-        return timestamp;
-    }
+        //类没有实例化,是不能用作父类构造器的参数,必须声明为静态
 
-    public static String TimeStamp2Time(long timeLong) {
-        String time = "" + timeLong;
-        SimpleDateFormat sdr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        @SuppressWarnings("unused")
-        long lcc = Long.valueOf(time);
-        int i = Integer.parseInt(time);
-        String times = sdr.format(new Date(i * 1000L));
-        return times;
+        private static final String name = "HelperDB"; //数据库名称
 
+        private static final int version = 1; //数据库版本
+
+        private DatabaseHelper(Context context) {
+
+            //第三个参数CursorFactory指定在执行查询时获得一个游标实例的工厂类,设置为null,代表使用系统默认的工厂类
+
+            super(context, name, null, version);
+
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+
+            final String SQL_TABLE_INIT_usertokens = "CREATE TABLE IF NOT EXISTS usertokens("
+                    + "updated_at INTEGER PRIMARY KEY NOT NULL,"
+                    + "user VARCHAR(50) NOT NULL,"
+                    + "access_token VARCHAR(100) NOT NULL"
+                    + ")";
+            final String SQL_TABLE_INIT_notification = "CREATE TABLE IF NOT EXISTS notifications("
+                    + "id INTEGER NOT NULL,"
+                    + "updated_at INTEGER NOT NULL,"
+                    + "owner VARCHAR(50) NOT NULL,"
+                    + "title VARCHAR(50),"
+                    + "author VARCHAR(50),"
+                    + "department INTEGER,"
+                    + "content VARCHAR(2000),"
+                    + "files VARCHAR(500),"
+                    + "star INTEGER DEFAULT 0,"
+                    + "show INTEGER DEFAULT 1,"
+                    + "read INTEGER DEFAULT 0,"
+                    + "UNIQUE(id,owner)"
+                    + ")";
+
+            db.execSQL(SQL_TABLE_INIT_usertokens);
+            db.execSQL(SQL_TABLE_INIT_notification);
+
+            Log.d("SQLite", "SQLite Online !");
+            Log.d("TimeStamp", "" + GetTimeStamp());
+
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        }
     }
 
 }

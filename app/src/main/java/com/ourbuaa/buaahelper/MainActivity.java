@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,18 +33,18 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, NoticeListFragment.OnListFragmentInteractionListener, View.OnClickListener {
-    private ImageButton form, notice, query;
-    private NoticeListFragment noticeFragment, FavFragment,trashFragment;
-    private WEBFragment FormblankFragment, QueryblankFragment,PersonalInfoFragment,MessageFragment,SettingPasswordFragment;
-    private String username, password;
-    private BUAAContentProvider buaaContentProvider, buaaFavContentProvider,buaaTrashContentProvider;
-    private RelativeLayout bottombar;
     public SQLiteUtils mySQLite;
-    private boolean NowForm = false, NowNotice = false, NowQuery = false,NowFav = false,NowTrash = false;
+    public Boolean Logining;
+    private ImageButton form, notice, query;
+    private NoticeListFragment noticeFragment, FavFragment, trashFragment;
+    private WEBFragment FormblankFragment, QueryblankFragment, PersonalInfoFragment, MessageFragment, SettingPasswordFragment;
+    private String username, password;
+    private BUAAContentProvider buaaContentProvider, buaaFavContentProvider, buaaTrashContentProvider;
+    private RelativeLayout bottombar;
+    private boolean NowForm = false, NowNotice = false, NowQuery = false, NowFav = false, NowTrash = false;
     private FragmentManager fm;
     private FragmentTransaction transaction;
     private Fragment nowFragment;
-    public Boolean Logining;
     private Boolean hasLogged;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -55,7 +56,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(android.R.style.Theme_Light_NoTitleBar);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -69,9 +73,6 @@ public class MainActivity extends AppCompatActivity
 
         fm = getFragmentManager();
         hasLogged = false;
-
-        //准备垃圾箱
-        //buaaTrashContentProvider=DataUtils.getContentProvider(BUAAContentProvider.TRASH);
 
 
         bottombar = (RelativeLayout) findViewById(R.id.bottom_bar_main_act);
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity
         DetailActivity.setSQLiteLink(mySQLite);
 
 
-       //TODO : 2017.2.16 debug it
+        //TODO : 2017.2.16 debug it
         Intent intent = new Intent();
         intent.setClass(MainActivity.this, LoginActivity.class);
         MainActivity.this.startActivity(intent);
@@ -124,11 +125,11 @@ public class MainActivity extends AppCompatActivity
 
                         if (ClientUtils.getLog_state()) {
 
-                            if(!hasLogged){
+                            if (!hasLogged) {
 
                                 hasLogged = true;
-                                PersonalInfoFragment.LoadUrl("https://www.ourbuaa.com/mobile/account?access_token="+ClientUtils.getAccess_token());
-                                MessageFragment.LoadUrl("https://www.ourbuaa.com/mobile/inquiry?access_token="+ClientUtils.getAccess_token());
+                                PersonalInfoFragment.LoadUrl("https://www.ourbuaa.com/mobile/account?access_token=" + ClientUtils.getAccess_token());
+                                MessageFragment.LoadUrl("https://www.ourbuaa.com/mobile/inquiry?access_token=" + ClientUtils.getAccess_token());
                                 //SettingPasswordFragment.LoadUrl();
                                 //FormblankFragment, QueryblankFragment,PersonalInfoFragment,MessageFragment,SettingPasswordFragment;
 
@@ -162,7 +163,6 @@ public class MainActivity extends AppCompatActivity
 */
 
                             }
-
 
 
                             //TODO: 上面两个分别是滑动侧栏的名字和所属部门，登录以后设置一下
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity
         syncFramentAndIconChange_Notice(1);
         syncFramentAndIconChange_Form(0);
         syncFramentAndIconChange_Query(0);
-       // Bundle bundle = getIntent().getExtras();
+        // Bundle bundle = getIntent().getExtras();
         //username = bundle.getString("Username");
         //password = bundle.getString("Password");
         //Toast.makeText(this,username+" "+password,Toast.LENGTH_LONG).show();
@@ -221,31 +221,31 @@ public class MainActivity extends AppCompatActivity
         //  noticeFragment.setTrash(buaaTrashContentProvider);
         transaction.add(R.id.FragmentContainer, noticeFragment);
 
-            FormblankFragment = WEBFragment.newInstance(getFormUrl());
-            QueryblankFragment = WEBFragment.newInstance(getQueryUrl());
-            MessageFragment = WEBFragment.newInstance(getMessageUrl());
-            SettingPasswordFragment = WEBFragment.newInstance(getRegisterUrl());
-            PersonalInfoFragment = WEBFragment.newInstance(getPersonalInfoUrl());
-            transaction.add(R.id.FragmentContainer,QueryblankFragment);
-            transaction.add(R.id.FragmentContainer, FormblankFragment);
-            transaction.add(R.id.FragmentContainer, MessageFragment);
-            transaction.add(R.id.FragmentContainer,PersonalInfoFragment);
-            transaction.add(R.id.FragmentContainer,SettingPasswordFragment);
+        FormblankFragment = WEBFragment.newInstance(getFormUrl());
+        QueryblankFragment = WEBFragment.newInstance(getQueryUrl());
+        MessageFragment = WEBFragment.newInstance(getMessageUrl());
+        SettingPasswordFragment = WEBFragment.newInstance(getRegisterUrl());
+        PersonalInfoFragment = WEBFragment.newInstance(getPersonalInfoUrl());
+        transaction.add(R.id.FragmentContainer, QueryblankFragment);
+        transaction.add(R.id.FragmentContainer, FormblankFragment);
+        transaction.add(R.id.FragmentContainer, MessageFragment);
+        transaction.add(R.id.FragmentContainer, PersonalInfoFragment);
+        transaction.add(R.id.FragmentContainer, SettingPasswordFragment);
 
-            FavFragment = new NoticeListFragment();
-            FavFragment.setSqLiteUtils(mySQLite);
-            buaaFavContentProvider = DataUtils.getContentProvider(BUAAContentProvider.FAV);
-            FavFragment.setProvider(buaaFavContentProvider);
-           // FavFragment.setOnScrollListener(new ListScrollListener());
-            transaction.add(R.id.FragmentContainer, FavFragment);
+        FavFragment = new NoticeListFragment();
+        FavFragment.setSqLiteUtils(mySQLite);
+        buaaFavContentProvider = DataUtils.getContentProvider(BUAAContentProvider.FAV);
+        FavFragment.setProvider(buaaFavContentProvider);
+        // FavFragment.setOnScrollListener(new ListScrollListener());
+        transaction.add(R.id.FragmentContainer, FavFragment);
 
 
-            trashFragment = new NoticeListFragment();
-            trashFragment.setSqLiteUtils(mySQLite);
-            buaaTrashContentProvider = DataUtils.getContentProvider(BUAAContentProvider.Trash);
-            trashFragment.setProvider(buaaTrashContentProvider);
-           // trashFragment.setOnScrollListener(new ListScrollListener());
-            transaction.add(R.id.FragmentContainer, trashFragment);
+        trashFragment = new NoticeListFragment();
+        trashFragment.setSqLiteUtils(mySQLite);
+        buaaTrashContentProvider = DataUtils.getContentProvider(BUAAContentProvider.Trash);
+        trashFragment.setProvider(buaaTrashContentProvider);
+        // trashFragment.setOnScrollListener(new ListScrollListener());
+        transaction.add(R.id.FragmentContainer, trashFragment);
         transaction.hide(QueryblankFragment);
         transaction.hide(FormblankFragment);
         transaction.hide(SettingPasswordFragment);
@@ -265,21 +265,19 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if (nowFragment != noticeFragment)
-            {
+            if (nowFragment != noticeFragment) {
                 //还原主界面
                 transaction = fm.beginTransaction();
                 bottombar.setVisibility(View.VISIBLE);
                 transaction.hide(nowFragment);
-                nowFragment =noticeFragment;
+                nowFragment = noticeFragment;
                 transaction.show(noticeFragment);
                 NowNotice = true;
                 NowQuery = NowForm = false;
                 NowTrash = false;
                 NowFav = false;
                 transaction.commit();
-            }
-            else {
+            } else {
                 super.onBackPressed();
             }
         }
@@ -300,9 +298,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        // if (id == R.id.action_settings) {
+        //    return true;
+        // }
 
         return super.onOptionsItemSelected(item);
     }
@@ -315,8 +313,8 @@ public class MainActivity extends AppCompatActivity
                     noticeFragment = new NoticeListFragment();
                 }*/
                 // 使用当前Fragment的布局替代id_content的控件
-               // if (NowQuery) transaction.hide(QueryblankFragment);
-               // if (NowForm) transaction.hide(FormblankFragment);
+                // if (NowQuery) transaction.hide(QueryblankFragment);
+                // if (NowForm) transaction.hide(FormblankFragment);
                 if (!NowNotice) {
                     transaction = fm.beginTransaction();
                     transaction.hide(nowFragment);
@@ -332,18 +330,17 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
             case R.id.Form:
-                if (!ClientUtils.getLog_state())
-                {
-                    Toast.makeText(getApplicationContext(),"您正处于离线模式，无法使用当前功能",Toast.LENGTH_SHORT).show();
+                if (!ClientUtils.getLog_state()) {
+                    Toast.makeText(getApplicationContext(), "您正处于离线模式，无法使用当前功能", Toast.LENGTH_SHORT).show();
                 }
-              //  if (NowQuery) transaction.hide(QueryblankFragment);
-               // if (NowNotice) transaction.hide(noticeFragment);
+                //  if (NowQuery) transaction.hide(QueryblankFragment);
+                // if (NowNotice) transaction.hide(noticeFragment);
                 else {
                     transaction = fm.beginTransaction();
                     syncFramentAndIconChange_Notice(0);
                     syncFramentAndIconChange_Form(1);
                     syncFramentAndIconChange_Query(0);
-                   // FormblankFragment.LoadUrl("http://www.qq.com");
+                    // FormblankFragment.LoadUrl("http://www.qq.com");
                     transaction.hide(nowFragment);
                     transaction.show(FormblankFragment);
                     nowFragment = FormblankFragment;
@@ -355,11 +352,9 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
             case R.id.Query:
-                if (!ClientUtils.getLog_state())
-                {
-                    Toast.makeText(getApplicationContext(),"您正处于离线模式，无法使用当前功能",Toast.LENGTH_SHORT).show();
-                }
-                else {
+                if (!ClientUtils.getLog_state()) {
+                    Toast.makeText(getApplicationContext(), "您正处于离线模式，无法使用当前功能", Toast.LENGTH_SHORT).show();
+                } else {
                     transaction = fm.beginTransaction();
                     syncFramentAndIconChange_Notice(0);
                     syncFramentAndIconChange_Form(0);
@@ -386,11 +381,9 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (!ClientUtils.getLog_state())
-        {
-            Toast.makeText(getApplicationContext(),"您正处于离线模式，无法使用当前功能",Toast.LENGTH_SHORT).show();
-        }
-        else {
+        if (!ClientUtils.getLog_state()) {
+            Toast.makeText(getApplicationContext(), "您正处于离线模式，无法使用当前功能", Toast.LENGTH_SHORT).show();
+        } else {
             bottombar.setVisibility(View.GONE);
             if (id == R.id.nav_message) {
                 transaction = fm.beginTransaction();
@@ -524,28 +517,33 @@ public class MainActivity extends AppCompatActivity
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
+
     //TODO: (2017.2.13) 获取网址的方法，除了注册的都要access_token
     String getFormUrl()  //填表，目前罗dalao还没做
     {
 
         return "https://www.ourbuaa.com/mobile/account";
     }
+
     String getQueryUrl()  //事务查询，目前没有拿到具体内容
     {
 
         return "https://www.ourbuaa.com/mobile/account";
     }
+
     String getPersonalInfoUrl()  //个人信息
     {
 
         return "https://www.ourbuaa.com/mobile/account";
     }
+
     String getRegisterUrl()  //注册
     {
         return "https://www.ourbuaa.com/mobile/register";
     }
+
     String getMessageUrl()  // 留言
     {
-       return "https://www.ourbuaa.com/mobile/inquiry";
+        return "https://www.ourbuaa.com/mobile/inquiry";
     }
 }

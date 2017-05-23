@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity
                                 e.printStackTrace();
                             }
 
-                            //TODO: 上面两个分别是滑动侧栏的名字和所属部门，登录以后设置一下
+                            // 上面两个分别是滑动侧栏的名字和所属部门，登录以后设置一下
                         } else {
                             //nav_header_name.setText("离线模式");
                             //nav_header_department.setText("");
@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity
                 NowForm = true;
                 NowQuery = false;
                 if (FormblankFragment == null) {
-                    //TODO: 填表Fragment完成
+                    // 填表Fragment完成
                     FormblankFragment = new BlankFragment();
                     transaction.add(R.id.FragmentContainer, FormblankFragment);
                 }
@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity
                 NowForm = false;
                 NowQuery = true;
                 if (QueryblankFragment == null) {
-                    //TODO：事务查询Fragment完成
+                    //事务查询Fragment完成
                     QueryblankFragment = new BlankFragment();
                     transaction.add(R.id.FragmentContainer, QueryblankFragment);
                 }
@@ -283,7 +283,7 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
     }
 
-    //TODO:完成修改资料和留言两个功能
+    //完成修改资料和留言两个功能
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -292,10 +292,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         bottombar.setVisibility(View.GONE);
         if (id == R.id.nav_message) {
-            //TODO：点击留言按钮后发生的事件（webview.....）
+            //点击留言按钮后发生的事件（webview.....）
             // Handle the camera action
         } else if (id == R.id.nav_setting_info) {
-            //TODO：点击修改资料按钮后发生的事件（webview.....）
+            //点击修改资料按钮后发生的事件（webview.....）
 
         } else if (id == R.id.nav_fav) {
 
@@ -378,8 +378,8 @@ public class MainActivity extends AppCompatActivity
      */
     public Action getIndexApiAction() {
         Thing object = new Thing.Builder()
-                .setName("Main Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
+                .setName("Main Page") // Define a title for the content shown.
+                // Make sure this auto-generated URL is correct.
                 .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
                 .build();
         return new Action.Builder(Action.TYPE_VIEW)

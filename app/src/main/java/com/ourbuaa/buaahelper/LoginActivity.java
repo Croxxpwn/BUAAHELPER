@@ -1,13 +1,11 @@
 package com.ourbuaa.buaahelper;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,16 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
+    private static SQLiteUtils SQLiteLink;
     private Button button;
     private EditText Username, Password;
     private ProgressDialog pdiaLog;
     private String username, password;
-
-    private static SQLiteUtils SQLiteLink;
 
     public static void setSQLiteLink(SQLiteUtils link) {
         SQLiteLink = link;
@@ -38,10 +34,10 @@ public class LoginActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.LoginButton);
         Username = (EditText) findViewById(R.id.LoginUsername);
         Password = (EditText) findViewById(R.id.LoginPassword);
-        Button RegisterButton = (Button)findViewById(R.id.RegisterButton);
+        Button RegisterButton = (Button) findViewById(R.id.RegisterButton);
 
-        Button OfflinModeButton = (Button)findViewById(R.id.OfflineModeBtn);
-        Button AutoLoginButton = (Button)findViewById(R.id.AutoLoginButton);
+        Button OfflinModeButton = (Button) findViewById(R.id.OfflineModeBtn);
+        Button AutoLoginButton = (Button) findViewById(R.id.AutoLoginButton);
         OfflinModeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,6 +103,29 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+            return true;//不执行父类点击事件
+        return super.onKeyDown(keyCode, event);//继续执行父类其他点击事件
+    }
+
+    private void attemptLogin() {
+        pdiaLog = ProgressDialog.show(this, "登录", "请稍等，正在登录中...", true, false);
+        username = Username.getText().toString();
+        password = Password.getText().toString();
+        LoginTask logintask = new LoginTask();
+        logintask.execute();
+    }
+
+    private void attemptStartService() {
+        if (ClientUtils.getLog_state()) {
+            Log.d("Service", "Start!");
+            Intent intent = new Intent(LoginActivity.this, NotificationUpdateQueryService.class);
+            LoginActivity.this.startService(intent);
+        }
+    }
+
     class TestTokenTask extends AsyncTask<String, Void, StringBuffer> {
         boolean LoginFlag = true;
 
@@ -152,20 +171,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode,KeyEvent event){
-        if(keyCode== KeyEvent.KEYCODE_BACK)
-            return true;//不执行父类点击事件
-        return super.onKeyDown(keyCode, event);//继续执行父类其他点击事件
-    }
-    private void attemptLogin() {
-        pdiaLog = ProgressDialog.show(this, "登录", "请稍等，正在登录中...", true, false);
-        username = Username.getText().toString();
-        password = Password.getText().toString();
-        LoginTask logintask = new LoginTask();
-        logintask.execute();
-    }
-
     class LoginTask extends AsyncTask<String, Void, StringBuffer> {
         boolean LoginFlag = true;
 
@@ -196,14 +201,6 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.finish();
 
             }
-        }
-    }
-
-    private void attemptStartService() {
-        if (ClientUtils.getLog_state()) {
-            Log.d("Service","Start!");
-            Intent intent = new Intent(LoginActivity.this, NotificationUpdateQueryService.class);
-            LoginActivity.this.startService(intent);
         }
     }
 }

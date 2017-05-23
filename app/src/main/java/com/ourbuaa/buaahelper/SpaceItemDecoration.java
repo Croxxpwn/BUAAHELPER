@@ -1,4 +1,5 @@
 package com.ourbuaa.buaahelper;
+
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ItemDecoration;

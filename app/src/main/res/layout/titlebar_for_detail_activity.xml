@@ -1,8 +1,13 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:visibility="visible">
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="@color/toolBar"
+       android:id="@+id/titlebar_1">
 
     <ImageButton
         android:id="@+id/goback"
@@ -10,10 +15,21 @@
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
+
+        android:layout_marginStart="25dp"
         android:background="@null"
         android:src="@drawable/ic_assignment_return_black_24dp" />
+     <TextView
+         android:layout_height="match_parent"
+         android:layout_width="match_parent"
+         android:maxLines="1"
+         android:id="@+id/titleBar1_text"
+         android:layout_alignBottom="@id/goback"
 
+         android:ellipsize="end"
+         android:layout_toEndOf="@+id/goback"
+         android:layout_toStartOf="@+id/fav">
+         </TextView>
     <ImageButton
         android:id="@+id/fav"
         android:layout_width="40dp"
@@ -25,19 +41,41 @@
 
 
         android:src="@mipmap/ic_star_border_black_24dp" />
+       </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/toolBar">
     <TextView
+
         android:id="@+id/titlebarText"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@id/goback"
-        android:layout_toLeftOf="@id/fav"
-        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
         android:gravity="center_vertical"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
         android:maxLines="1"
-        android:ellipsize="marquee"
+        android:ellipsize="end"
         android:text="Title"
-        android:textSize="20sp" />
+
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:textSize="25sp"
+        android:layout_toStartOf="@+id/titleBarStatus"
+
+         />
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_alignBottom="@+id/titlebarText"
+            android:id="@+id/titleBarStatus"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            >
+
+            </LinearLayout>
+    </RelativeLayout>
 
 
-
-</RelativeLayout>
+</LinearLayout>

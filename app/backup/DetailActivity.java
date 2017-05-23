@@ -87,7 +87,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
             e.printStackTrace();
         }
 
-        //TODO:由于这次讨论的结果是不做上下翻页，这里就留作以后用好了，就是hasMoreXXX方法不用写了（暂时）
+        //由于这次讨论的结果是不做上下翻页，这里就留作以后用好了，就是hasMoreXXX方法不用写了（暂时）
 
         if (!hasMoreBeforeNotification()) getLast.setVisibility(View.GONE);
         if (!hasMoreNextNotification()) getNext.setVisibility(View.GONE);
@@ -95,7 +95,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
         if (hasMoreNextNotification() && hasMoreBeforeNotification()) {
             Bottom_bar.setBackgroundColor(0XEEEEEE);
         }
-        //TODO:完成以下三个监听事件，从上往下：上一个，下一个，收藏（前两个暂时不写）
+        //完成以下三个监听事件，从上往下：上一个，下一个，收藏（前两个暂时不写）
 
         getLast.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,12 +151,12 @@ public class DetailActivity extends Activity implements View.OnClickListener {
         this.finish();
     }
 
-    private boolean hasMoreBeforeNotification()  //TODO：前面是否还有（暂时不写）
+    private boolean hasMoreBeforeNotification()  //前面是否还有（暂时不写）
     {
         return false;
     }
 
-    private boolean hasMoreNextNotification()  //TODO:后面是否还有（暂时不写）
+    private boolean hasMoreNextNotification()  //后面是否还有（暂时不写）
     {
         return false;
     }

@@ -10,9 +10,12 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.yanzhenjie.recyclerview.swipe.Closeable;
@@ -48,6 +51,7 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
     private SQLiteUtils sqLiteUtils;
     private View view;
     private Context mContext;
+    private Button HaveReadButton;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     //加载更多调下面这个类
     private RecyclerView.OnScrollListener mOnScrollListener = new ListScrollListener();
@@ -256,12 +260,43 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
                 .setColorResource(R.color.split)
                 .build();
         mRecyclerView.addItemDecoration(divider);*/
+
         // Set the search bar
         MaterialSearchBar materialSearchBar = (MaterialSearchBar) view.findViewById(R.id.searchBar);
         CustomSuggestionsAdapter customSuggestionsAdapter = new CustomSuggestionsAdapter(inflater);
         List<itemForSeachBar> suggestions = new ArrayList<>();
         customSuggestionsAdapter.setSuggestions(suggestions);
         materialSearchBar.setCustomSuggestionAdapter(customSuggestionsAdapter);
+        materialSearchBar.setBackgroundColor(getResources().getColor(R.color.toolBar));
+        materialSearchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
+            @Override
+            public void onSearchStateChanged(boolean enabled) {
+
+            }
+
+            @Override
+            public void onSearchConfirmed(CharSequence text) {
+                  //TODO:(2017.5.23) 搜索栏确认搜索，text表示文字内容，搜索列表保存在suggestions里面，
+                  // 要记得加customSuggestionsAdapter.notifyDatasetChanaged()
+            }
+
+            @Override
+            public void onButtonClicked(int buttonCode) {
+                 //TODO:(2017.5.23) 效果同上，只不过这个按了搜索按钮
+            }
+        });
+
+
+        //TODO:(2017.5.23)完成已读按钮逻辑
+        HaveReadButton = (Button)view.findViewById(R.id.HaveRead);
+        HaveReadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // ((BUAAContentProvider) provider).updateHaveReadNotifications();
+                //我瞎编的方法，类似于updateNotifications
+            }
+        });
+
         return view;
     }
 

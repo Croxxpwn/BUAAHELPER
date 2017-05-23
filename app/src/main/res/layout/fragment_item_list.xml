@@ -6,9 +6,16 @@
     android:layout_height="match_parent"
     tools:context="com.ourbuaa.buaahelper.NoticeListFragment">
 
-
+    <Button
+        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:id="@+id/HaveRead"
+        android:text="已读(测试用)"
+        >
+    </Button>
     <com.mancj.materialsearchbar.MaterialSearchBar
-        app:speechMode="true"
+        android:layout_below="@+id/HaveRead"
+        app:speechMode="false"
         app:hint="Custom hint"
         app:maxSuggestionsCount="10"
         android:layout_width="match_parent"

@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 
 public class BUAAContentProvider extends ContentProvider {
-    //TODO: Accomplish all the methods here, all content in each method should be overwritten
+    // Accomplish all the methods here, all content in each method should be overwritten
     public static final String FAV = "FAV", Notice = "NOTICE",TRASH="TRASH";
     private List<CommonItemForList> ITEMS = new ArrayList<CommonItemForList>();
     String username, password, type;
@@ -42,7 +42,7 @@ public class BUAAContentProvider extends ContentProvider {
     BUAAContentProvider(String type) {
         super(null); // do not delete this part
         this.type = type;
-        //TODO:(YCH,2017,2,8)增加type为TRASH（垃圾箱）的实现
+
         getInitialDataList();
 
     }

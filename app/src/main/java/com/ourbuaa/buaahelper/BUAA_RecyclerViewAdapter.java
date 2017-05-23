@@ -98,6 +98,17 @@ public class BUAA_RecyclerViewAdapter extends SwipeMenuAdapter<BUAA_RecyclerView
             final ListItemViewHolder viewHolder, int position) {
         viewHolder.itemForList = items.get(position);
         viewHolder.label.setText(viewHolder.itemForList.label);
+        int[] status = viewHolder.itemForList.getIDToStatusImage();
+        if (status!=null)
+        {
+           // int len=status.length;
+            for (int id:status) {
+                ImageView imageView = new ImageView(viewHolder.StatusContainer.getContext());
+                imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                imageView.setImageResource(id);
+                viewHolder.StatusContainer.addView(imageView);
+            }
+        }
         if (viewHolder.itemForList.isread()) viewHolder.label.setTextColor(Color.GRAY);
         String dateStr = DateUtils.formatDateTime(
                 viewHolder.label.getContext(),
@@ -153,7 +164,7 @@ public class BUAA_RecyclerViewAdapter extends SwipeMenuAdapter<BUAA_RecyclerView
         View view;
         CommonItemForList itemForList;
         RelativeLayout mItemLayout;
-        LinearLayout ContainerLayout, mSwipeMenuLayout;
+        LinearLayout ContainerLayout, mSwipeMenuLayout,StatusContainer;
 
         //      private int mScreenWidth;	// 屏幕宽度
         //     private int mDownX;			// 按下点的x值
@@ -178,7 +189,7 @@ public class BUAA_RecyclerViewAdapter extends SwipeMenuAdapter<BUAA_RecyclerView
             icon = (ImageView) itemView.findViewById(R.id.image_noice_icon);
             mItemLayout = (RelativeLayout) itemView.findViewById(R.id.ListItemLayout);
             //mItemLayout.setOnClickListener(this);
-
+            StatusContainer = (LinearLayout) itemView.findViewById(R.id.list_item_status);
             ContainerLayout = (LinearLayout) itemView.findViewById(R.id.container_inner_item);
 //            mLayoutParams = (LinearLayout.LayoutParams)ContainerLayout.getLayoutParams();
             //          mLayoutParams.width = mScreenWidth;

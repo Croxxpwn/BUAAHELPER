@@ -14,6 +14,7 @@ public class CommonItemForList {
     StringBuffer Detail; //put your HTML content here
     Boolean read;
     long department;
+
     //long id = ++nextid;
     private long id;
 
@@ -34,6 +35,12 @@ public class CommonItemForList {
 
     public StringBuffer getDetail() {
         return Detail;
+    }
+
+    public int[] getIDToStatusImage()
+    {
+        //TODO: (2017.5.23) 传出带必读标记之类标记的图片的resourceID数组(比如R.mipmap.xxx)
+        return null;
     }
 
     public void setDetail(StringBuffer detail) {

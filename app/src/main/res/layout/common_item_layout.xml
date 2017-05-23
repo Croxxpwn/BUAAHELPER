@@ -35,7 +35,7 @@
 
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-                    android:src="@mipmap/d1" />
+                    android:src="@mipmap/d21" />
             </RelativeLayout>
              <LinearLayout
                  android:layout_height="match_parent"

@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 24
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.ourbuaa.buaahelper"
@@ -34,14 +34,13 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
 
     compile 'com.github.mancj:MaterialSearchBar:0.6'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-
+    compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.yanzhenjie:recyclerview-swipe:1.0.4'
-    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:support-v4:24.2.1'
     testCompile 'junit:junit:4.12'
-    compile 'com.google.android.gms:play-services-appindexing:9.8.0'
+    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
 }

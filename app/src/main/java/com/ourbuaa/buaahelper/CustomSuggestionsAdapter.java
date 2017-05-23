@@ -10,15 +10,15 @@ import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
  * Created by alan_yang on 2017/5/22.
  */
 
-public class CustomSuggestionsAdapter extends SuggestionsAdapter<itemForSeachBar,SuggestionHolder> {
+public class CustomSuggestionsAdapter extends SuggestionsAdapter<itemForSeachBar, SuggestionHolder> {
     public CustomSuggestionsAdapter(LayoutInflater inflater) {
         super(inflater);
     }
 
     @Override
     public void onBindSuggestionHolder(itemForSeachBar suggestion, SuggestionHolder holder, int position) {
-             holder.getTitle().setText(suggestion.getTitle());
-             holder.getDate().setText(suggestion.getTime().toString());
+        holder.getTitle().setText(suggestion.getTitle());
+        holder.getDate().setText(suggestion.getTime().toString());
     }
 
     @Override

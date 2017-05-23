@@ -1,35 +1,30 @@
 package com.ourbuaa.buaahelper;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.view.menu.MenuAdapter;
-import android.support.v7.widget.*;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.yanzhenjie.recyclerview.swipe.Closeable;
 import com.yanzhenjie.recyclerview.swipe.OnSwipeMenuItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuCreator;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenuItem;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
-//import com.yanzhenjie.swiperecyclerview.view.ListViewDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
+
+//import com.yanzhenjie.swiperecyclerview.view.ListViewDecoration;
 
 /**
  * A fragment representing a list of Items.
@@ -37,14 +32,14 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAdapter.OnClickListener,BUAA_RecyclerViewAdapter.GarbageCollector {
+public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAdapter.OnClickListener, BUAA_RecyclerViewAdapter.GarbageCollector {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-   private BUAA_RecyclerViewAdapter buaa_recyclerViewAdapter;
+    private BUAA_RecyclerViewAdapter buaa_recyclerViewAdapter;
 
     private ContentProvider provider, trash;
     private SwipeMenuRecyclerView mSwipeMenuRecyclerView;
@@ -56,235 +51,7 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
     private SwipeRefreshLayout mSwipeRefreshLayout;
     //加载更多调下面这个类
     private RecyclerView.OnScrollListener mOnScrollListener = new ListScrollListener();
-   // private MenuAdapter mMenuAdapter;
-
-
-    public void setSqLiteUtils(SQLiteUtils sqLiteUtils) {
-        this.sqLiteUtils = sqLiteUtils;
-    }
-
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public NoticeListFragment() {
-    }
-
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static NoticeListFragment newInstance(int columnCount) {
-        NoticeListFragment fragment = new NoticeListFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
-
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-         view = inflater.inflate(R.layout.fragment_item_list, container, false);
-
-        // Set the adapter
-        mContext = view.getContext();
-        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
-        mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
-        mSwipeMenuRecyclerView = (SwipeMenuRecyclerView)view.findViewById(R.id.recycler_view);
-
-        mSwipeMenuRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));// 布局管理器。
-        mSwipeMenuRecyclerView.setHasFixedSize(true);// 如果Item够简单，高度是确定的，打开FixSize将提高性能。
-        mSwipeMenuRecyclerView.setItemAnimator(new DefaultItemAnimator());// 设置Item默认动画，加也行，不加也行。
-        mSwipeMenuRecyclerView.addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.VERTICAL));// 添加分割线。
-        // 添加滚动监听。
-        mSwipeMenuRecyclerView.addOnScrollListener(mOnScrollListener);
-        ((ListScrollListener)mOnScrollListener).setBuaaContentProvider((BUAAContentProvider)provider);
-        // 为SwipeRecyclerView的Item创建菜单
-        // 设置菜单创建器。
-        mSwipeMenuRecyclerView.setSwipeMenuCreator(swipeMenuCreator);
-        // 设置菜单Item点击监听。
-        mSwipeMenuRecyclerView.setSwipeMenuItemClickListener(menuItemClickListener);
-
-
-
-
-        //mMenuAdapter = new MenuAdapter(mDataList);
-        //mMenuAdapter.setOnItemClickListener(onItemClickListener);
-        ((BUAAContentProvider)provider).setContext(getActivity());
-
-        if (buaa_recyclerViewAdapter == null)
-            buaa_recyclerViewAdapter = new BUAA_RecyclerViewAdapter(provider);
-        buaa_recyclerViewAdapter.setOnClickListener(this);
-        ((BUAAContentProvider) provider).setBuaa_recyclerViewAdapter(buaa_recyclerViewAdapter);
-        ((BUAAContentProvider)provider).updateNotifications();
-        buaaItemTouchHelperCallback = new BUAAItemTouchHelperCallback(buaa_recyclerViewAdapter);
-        buaa_recyclerViewAdapter.setGarbageCollector(this);
-        mSwipeMenuRecyclerView.setAdapter(buaa_recyclerViewAdapter);
-
-    //    Toast.makeText(mContext,((Integer)buaa_recyclerViewAdapter.getItemCount()).toString(),Toast.LENGTH_SHORT).show();
-        itemTouchHelper = new ItemTouchHelper(buaaItemTouchHelperCallback);
-        itemTouchHelper.attachToRecyclerView(mSwipeMenuRecyclerView);
-       /* recyclerView = (RecyclerView) view.findViewById(R.id.NoticeList);
-        if (mColumnCount <= 1) {
-            recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-        }
-        //provider = new ContentProvider();
-        ((BUAAContentProvider)provider).setContext(getActivity());
-
-        if (buaa_recyclerViewAdapter == null)
-            buaa_recyclerViewAdapter = new BUAA_RecyclerViewAdapter(provider);
-        buaa_recyclerViewAdapter.setOnClickListener(this);
-        ((BUAAContentProvider) provider).setBuaa_recyclerViewAdapter(buaa_recyclerViewAdapter);
-        buaaItemTouchHelperCallback = new BUAAItemTouchHelperCallback(buaa_recyclerViewAdapter);
-        buaa_recyclerViewAdapter.setGarbageCollector(this);
-        // buaaItemTouchHelperCallback.setMadapter(buaa_recyclerViewAdapter);
-        itemTouchHelper = new ItemTouchHelper(buaaItemTouchHelperCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-
-        recyclerView.setAdapter(buaa_recyclerViewAdapter);
-        recyclerView.addItemDecoration(new SpaceItemDecoration(20));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
-        if (onScrollListener == null)
-            recyclerView.addOnScrollListener(new DefaultOnScrollListener());
-        else
-            recyclerView.addOnScrollListener(onScrollListener);
-        /*DividerDecoration divider = new DividerDecoration.Builder(getContext(),mLrecyclerviewAdapter)
-                .setHeight(R.dimen.default_divider_height)
-                .setPadding(R.dimen.default_divider_padding)
-                .setColorResource(R.color.split)
-                .build();
-        mRecyclerView.addItemDecoration(divider);*/
-        // Set the search bar
-        MaterialSearchBar materialSearchBar = (MaterialSearchBar) view.findViewById(R.id.searchBar);
-        CustomSuggestionsAdapter customSuggestionsAdapter = new CustomSuggestionsAdapter(inflater);
-        List<itemForSeachBar> suggestions = new ArrayList<>();
-        customSuggestionsAdapter.setSuggestions(suggestions);
-        materialSearchBar.setCustomSuggestionAdapter(customSuggestionsAdapter);
-        return view;
-    }
-
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
-            if (buaa_recyclerViewAdapter != null)
-                buaa_recyclerViewAdapter.setOnListFragmentInteractionListener(mListener);
-        } else {
-           // throw new RuntimeException(context.toString()
-             //       + " must implement OnListFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((BUAAContentProvider) provider).updateNotifications();
-
-    }
-
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-
-    public interface OnListFragmentInteractionListener {
-
-        void onListFragmentInteraction(CommonItemForList item);
-    }
-
-    @Override
-    public void OnItemClick(CommonItemForList itemForList, int pos) {
-        // BUAA_RecyclerViewAdapter.ListItemViewHolder viewHolder = (BUAA_RecyclerViewAdapter.ListItemViewHolder)(recyclerView.getChildViewHolder(view));
-        // CommonItemForList itemForList = viewHolder.getItemForList();
-        //Bundle bundle = new Bundle();
-        // bundle.putInt("ID",itemForList.getId() );
-        //bundle.putInt();
-        sqLiteUtils.ReadNotificationByID(itemForList.getId());
-        Intent intent = new Intent(getActivity(), DetailActivity.class);
-        intent.putExtra("ID", itemForList.getId());
-        intent.putExtra("Position", pos);
-        // if (itemForList.Detail != null)
-        //     intent.putExtra("Detail",itemForList.Detail.toString());
-        // intent.putExtra("Adapter",  buaa_recyclerViewAdapter);
-        startActivity(intent);
-        //Toast.makeText(getActivity(),"Position:"+pos,Toast.LENGTH_SHORT).show();
-    }
-
-  @Override
-    public void OnDeleteBtnClick(int pos) {
-        //int pos = recyclerView.getChildAdapterPosition(view);
-       // buaa_recyclerViewAdapter.RemoveData(pos);
-       // buaa_recyclerViewAdapter.notifyDataSetChanged();
-    }
-
-   @Override
-    public void OnFavoriteBtnClick(int pos) {
-
-    }
-
-   @Override
-    public void OnItemClick(int pos) {
-        Intent intent = new Intent(getActivity(), DetailActivity.class);
-        //intent.putExtra("ID",itemForList.getId() );
-        intent.putExtra("Position", pos);
-        // if (itemForList.Detail != null)
-        //     intent.putExtra("Detail",itemForList.Detail.toString());
-        // intent.putExtra("Adapter",  buaa_recyclerViewAdapter);
-        startActivity(intent);
-    }
-
-    @Override
-    public void OnDataRemoved(CommonItemForList itemForList, int position) {
-        //TODO:删除item的接口已经暴露,position表示待删除元素在ITEMS数组中的index，itemForList是待删除元素的详细内容
-        //if (trash instanceof BUAAContentProvider) {
-        //得到type为TRASH的ContentProvider
-        //BUAAContentProvider garbageCollector = (BUAAContentProvider)trash;
-        //这是目前默认的删除方式，记得保留这几行
-        String type = ((BUAAContentProvider) provider).getType();
-        if (!type.equals(BUAAContentProvider.Trash)) {
-            sqLiteUtils.HideNotificationByID(itemForList.getId());
-        } else
-            sqLiteUtils.SeekNotificationByID(itemForList.getId());
-        if (provider instanceof BUAAContentProvider) {
-            ((BUAAContentProvider) provider).deleteDataInList(position);
-        }
-
-        //}
-    }
-
-  public void setProvider(ContentProvider provider) {
-        this.provider = provider;
-    }
-
-
+    // private MenuAdapter mMenuAdapter;
     /**
      * 刷新监听。
      */
@@ -294,11 +61,6 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
             mSwipeMenuRecyclerView.postDelayed(() -> mSwipeRefreshLayout.setRefreshing(false), 2000);
         }
     };
-
-
-
-
-
     /**
      * 菜单创建器。在Item要创建菜单的时候调用。
      */
@@ -356,14 +118,6 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
             }
         }
     };
-
-   /* private OnItemClickListener onItemClickListener = new OnItemClickListener() {
-        @Override
-        public void onItemClick(int position) {
-            Toast.makeText(mContext, "我是第" + position + "条。", Toast.LENGTH_SHORT).show();
-        }
-    };*/
-
     /**
      * 菜单点击监听。
      */
@@ -381,19 +135,248 @@ public class NoticeListFragment extends Fragment implements BUAA_RecyclerViewAda
             closeable.smoothCloseMenu();// 关闭被点击的菜单。
 
             if (direction == SwipeMenuRecyclerView.RIGHT_DIRECTION) {
-               // Toast.makeText(mContext, "list第" + adapterPosition + "; 右侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(mContext, "list第" + adapterPosition + "; 右侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
             } else if (direction == SwipeMenuRecyclerView.LEFT_DIRECTION) {
-               // Toast.makeText(mContext, "list第" + adapterPosition + "; 左侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(mContext, "list第" + adapterPosition + "; 左侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
             }
 
             // TODO 推荐调用Adapter.notifyItemRemoved(position)，也可以Adapter.notifyDataSetChanged();
-           // if (menuPosition == 0) {// 删除按钮被点击。
-               // sqLiteUtils.StarNotification(adapterPosition);
-                //buaa_recyclerViewAdapter.RemoveData(adapterPosition);
-                //buaa_recyclerViewAdapter.notifyItemRemoved(adapterPosition);
+            // if (menuPosition == 0) {// 删除按钮被点击。
+            // sqLiteUtils.StarNotification(adapterPosition);
+            //buaa_recyclerViewAdapter.RemoveData(adapterPosition);
+            //buaa_recyclerViewAdapter.notifyItemRemoved(adapterPosition);
             //}
         }
     };
+
+    /**
+     * Mandatory empty constructor for the fragment manager to instantiate the
+     * fragment (e.g. upon screen orientation changes).
+     */
+    public NoticeListFragment() {
+    }
+
+    // TODO: Customize parameter initialization
+    @SuppressWarnings("unused")
+    public static NoticeListFragment newInstance(int columnCount) {
+        NoticeListFragment fragment = new NoticeListFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_COLUMN_COUNT, columnCount);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public void setSqLiteUtils(SQLiteUtils sqLiteUtils) {
+        this.sqLiteUtils = sqLiteUtils;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+        }
+
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_item_list, container, false);
+
+        // Set the adapter
+        mContext = view.getContext();
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+        mSwipeMenuRecyclerView = (SwipeMenuRecyclerView) view.findViewById(R.id.recycler_view);
+
+        mSwipeMenuRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));// 布局管理器。
+        mSwipeMenuRecyclerView.setHasFixedSize(true);// 如果Item够简单，高度是确定的，打开FixSize将提高性能。
+        mSwipeMenuRecyclerView.setItemAnimator(new DefaultItemAnimator());// 设置Item默认动画，加也行，不加也行。
+        mSwipeMenuRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));// 添加分割线。
+        // 添加滚动监听。
+        mSwipeMenuRecyclerView.addOnScrollListener(mOnScrollListener);
+        ((ListScrollListener) mOnScrollListener).setBuaaContentProvider((BUAAContentProvider) provider);
+        // 为SwipeRecyclerView的Item创建菜单
+        // 设置菜单创建器。
+        mSwipeMenuRecyclerView.setSwipeMenuCreator(swipeMenuCreator);
+        // 设置菜单Item点击监听。
+        mSwipeMenuRecyclerView.setSwipeMenuItemClickListener(menuItemClickListener);
+
+
+        //mMenuAdapter = new MenuAdapter(mDataList);
+        //mMenuAdapter.setOnItemClickListener(onItemClickListener);
+        ((BUAAContentProvider) provider).setContext(getActivity());
+
+        if (buaa_recyclerViewAdapter == null)
+            buaa_recyclerViewAdapter = new BUAA_RecyclerViewAdapter(provider);
+        buaa_recyclerViewAdapter.setOnClickListener(this);
+        ((BUAAContentProvider) provider).setBuaa_recyclerViewAdapter(buaa_recyclerViewAdapter);
+        ((BUAAContentProvider) provider).updateNotifications();
+        buaaItemTouchHelperCallback = new BUAAItemTouchHelperCallback(buaa_recyclerViewAdapter);
+        buaa_recyclerViewAdapter.setGarbageCollector(this);
+        mSwipeMenuRecyclerView.setAdapter(buaa_recyclerViewAdapter);
+
+        //    Toast.makeText(mContext,((Integer)buaa_recyclerViewAdapter.getItemCount()).toString(),Toast.LENGTH_SHORT).show();
+        itemTouchHelper = new ItemTouchHelper(buaaItemTouchHelperCallback);
+        itemTouchHelper.attachToRecyclerView(mSwipeMenuRecyclerView);
+       /* recyclerView = (RecyclerView) view.findViewById(R.id.NoticeList);
+        if (mColumnCount <= 1) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+        }
+        //provider = new ContentProvider();
+        ((BUAAContentProvider)provider).setContext(getActivity());
+
+        if (buaa_recyclerViewAdapter == null)
+            buaa_recyclerViewAdapter = new BUAA_RecyclerViewAdapter(provider);
+        buaa_recyclerViewAdapter.setOnClickListener(this);
+        ((BUAAContentProvider) provider).setBuaa_recyclerViewAdapter(buaa_recyclerViewAdapter);
+        buaaItemTouchHelperCallback = new BUAAItemTouchHelperCallback(buaa_recyclerViewAdapter);
+        buaa_recyclerViewAdapter.setGarbageCollector(this);
+        // buaaItemTouchHelperCallback.setMadapter(buaa_recyclerViewAdapter);
+        itemTouchHelper = new ItemTouchHelper(buaaItemTouchHelperCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.setAdapter(buaa_recyclerViewAdapter);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(20));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+
+        if (onScrollListener == null)
+            recyclerView.addOnScrollListener(new DefaultOnScrollListener());
+        else
+            recyclerView.addOnScrollListener(onScrollListener);
+        /*DividerDecoration divider = new DividerDecoration.Builder(getContext(),mLrecyclerviewAdapter)
+                .setHeight(R.dimen.default_divider_height)
+                .setPadding(R.dimen.default_divider_padding)
+                .setColorResource(R.color.split)
+                .build();
+        mRecyclerView.addItemDecoration(divider);*/
+        // Set the search bar
+        MaterialSearchBar materialSearchBar = (MaterialSearchBar) view.findViewById(R.id.searchBar);
+        CustomSuggestionsAdapter customSuggestionsAdapter = new CustomSuggestionsAdapter(inflater);
+        List<itemForSeachBar> suggestions = new ArrayList<>();
+        customSuggestionsAdapter.setSuggestions(suggestions);
+        materialSearchBar.setCustomSuggestionAdapter(customSuggestionsAdapter);
+        return view;
+    }
+
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof OnListFragmentInteractionListener) {
+            mListener = (OnListFragmentInteractionListener) context;
+            if (buaa_recyclerViewAdapter != null)
+                buaa_recyclerViewAdapter.setOnListFragmentInteractionListener(mListener);
+        } else {
+            // throw new RuntimeException(context.toString()
+            //       + " must implement OnListFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((BUAAContentProvider) provider).updateNotifications();
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void OnItemClick(CommonItemForList itemForList, int pos) {
+        // BUAA_RecyclerViewAdapter.ListItemViewHolder viewHolder = (BUAA_RecyclerViewAdapter.ListItemViewHolder)(recyclerView.getChildViewHolder(view));
+        // CommonItemForList itemForList = viewHolder.getItemForList();
+        //Bundle bundle = new Bundle();
+        // bundle.putInt("ID",itemForList.getId() );
+        //bundle.putInt();
+        sqLiteUtils.ReadNotificationByID(itemForList.getId());
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra("ID", itemForList.getId());
+        intent.putExtra("Position", pos);
+        // if (itemForList.Detail != null)
+        //     intent.putExtra("Detail",itemForList.Detail.toString());
+        // intent.putExtra("Adapter",  buaa_recyclerViewAdapter);
+        startActivity(intent);
+        //Toast.makeText(getActivity(),"Position:"+pos,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void OnDeleteBtnClick(int pos) {
+        //int pos = recyclerView.getChildAdapterPosition(view);
+        // buaa_recyclerViewAdapter.RemoveData(pos);
+        // buaa_recyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void OnFavoriteBtnClick(int pos) {
+
+    }
+
+    @Override
+    public void OnItemClick(int pos) {
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        //intent.putExtra("ID",itemForList.getId() );
+        intent.putExtra("Position", pos);
+        // if (itemForList.Detail != null)
+        //     intent.putExtra("Detail",itemForList.Detail.toString());
+        // intent.putExtra("Adapter",  buaa_recyclerViewAdapter);
+        startActivity(intent);
+    }
+
+    @Override
+    public void OnDataRemoved(CommonItemForList itemForList, int position) {
+        //TODO:删除item的接口已经暴露,position表示待删除元素在ITEMS数组中的index，itemForList是待删除元素的详细内容
+        //if (trash instanceof BUAAContentProvider) {
+        //得到type为TRASH的ContentProvider
+        //BUAAContentProvider garbageCollector = (BUAAContentProvider)trash;
+        //这是目前默认的删除方式，记得保留这几行
+        String type = ((BUAAContentProvider) provider).getType();
+        if (!type.equals(BUAAContentProvider.Trash)) {
+            sqLiteUtils.HideNotificationByID(itemForList.getId());
+        } else
+            sqLiteUtils.SeekNotificationByID(itemForList.getId());
+        if (provider instanceof BUAAContentProvider) {
+            ((BUAAContentProvider) provider).deleteDataInList(position);
+        }
+
+        //}
+    }
+
+    public void setProvider(ContentProvider provider) {
+        this.provider = provider;
+    }
+
+   /* private OnItemClickListener onItemClickListener = new OnItemClickListener() {
+        @Override
+        public void onItemClick(int position) {
+            Toast.makeText(mContext, "我是第" + position + "条。", Toast.LENGTH_SHORT).show();
+        }
+    };*/
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+
+    public interface OnListFragmentInteractionListener {
+
+        void onListFragmentInteraction(CommonItemForList item);
+    }
 
     /*@Override
     public boolean onPrepareOptionsMenu(Menu menu) {

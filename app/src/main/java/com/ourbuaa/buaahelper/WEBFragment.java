@@ -1,9 +1,9 @@
 package com.ourbuaa.buaahelper;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,11 +29,11 @@ public class WEBFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-   // private static final String ARG_PARAM2 = "param2";
+    // private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
-  //  private String mParam2;
+    //  private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -42,24 +42,12 @@ public class WEBFragment extends Fragment {
     public WEBFragment() {
         // Required empty public constructor
     }
-    //TODO:2017,2,16 :: FOR XX   use this for change url
-    public void LoadUrl(String url) {
-
-        mParam1 = url;
-        webView.loadUrl(url);
-        //webView.reload();
-    }
-
-    public void setUrl(String url) {
-        this.mParam1 =url;
-    }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-
      * @return A new instance of fragment WEBFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -72,12 +60,24 @@ public class WEBFragment extends Fragment {
         return fragment;
     }
 
+    //TODO:2017,2,16 :: FOR XX   use this for change url
+    public void LoadUrl(String url) {
+
+        mParam1 = url;
+        webView.loadUrl(url);
+        //webView.reload();
+    }
+
+    public void setUrl(String url) {
+        this.mParam1 = url;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 =getArguments().getString(ARG_PARAM1);
-          //  mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            //  mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -91,8 +91,8 @@ public class WEBFragment extends Fragment {
         //webView.loadUrl(mParam1);
 
 
-        final ProgressBar bar = (ProgressBar)view.findViewById(R.id.progress_bar_for_blank_fragment);
-        webView.setWebChromeClient(new WebChromeClient(){
+        final ProgressBar bar = (ProgressBar) view.findViewById(R.id.progress_bar_for_blank_fragment);
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 if (newProgress == 100) {
@@ -106,13 +106,14 @@ public class WEBFragment extends Fragment {
                 super.onProgressChanged(view, newProgress);
             }
         });
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 // TODO Auto-generated method stub
                 view.loadUrl(url);
                 return true;
             }
+
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 String data = "网络错误";
                 view.loadUrl("javascript:document.body.innerHTML=\"" + data + "\"");
@@ -154,8 +155,8 @@ public class WEBFragment extends Fragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (mParam1 != null&&webView!=null)
-        webView.loadUrl(mParam1);
+        if (mParam1 != null && webView != null)
+            webView.loadUrl(mParam1);
     }
 
     @Override

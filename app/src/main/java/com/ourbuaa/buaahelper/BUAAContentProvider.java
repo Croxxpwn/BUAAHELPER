@@ -1,19 +1,15 @@
 package com.ourbuaa.buaahelper;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
 
 
 /**
@@ -24,12 +20,19 @@ public class BUAAContentProvider extends ContentProvider {
     //TODO: Accomplish all the methods here, all content in each method should be overwritten
     //TODO:(2017.2.8) 提供type为Trash的实例
     public static final String FAV = "FAV", Notice = "NOTICE", Trash = "TRASH";
-    private List<CommonItemForList> ITEMS = new ArrayList<CommonItemForList>();
-    String type;
-    private boolean isfirst = true;
     private static SQLiteUtils SQLiteLink;
+    String type;
+    private List<CommonItemForList> ITEMS = new ArrayList<CommonItemForList>();
+    private boolean isfirst = true;
     private BUAA_RecyclerViewAdapter buaa_recyclerViewAdapter;
     private Context context;
+
+    BUAAContentProvider(String type) {
+        super(null); // do not delete this part
+        this.type = type;
+        getInitialDataList();
+
+    }
 
     public static void setSQLiteLink(SQLiteUtils link) {
         SQLiteLink = link;
@@ -39,19 +42,12 @@ public class BUAAContentProvider extends ContentProvider {
         return type;
     }
 
-    public void setBuaa_recyclerViewAdapter(BUAA_RecyclerViewAdapter buaa_recyclerViewAdapter) {
-        this.buaa_recyclerViewAdapter = buaa_recyclerViewAdapter;
-    }
-
     public BUAA_RecyclerViewAdapter getBuaa_recyclerViewAdapter() {
         return buaa_recyclerViewAdapter;
     }
 
-    BUAAContentProvider(String type) {
-        super(null); // do not delete this part
-        this.type = type;
-        getInitialDataList();
-
+    public void setBuaa_recyclerViewAdapter(BUAA_RecyclerViewAdapter buaa_recyclerViewAdapter) {
+        this.buaa_recyclerViewAdapter = buaa_recyclerViewAdapter;
     }
 
     @Override
@@ -113,9 +109,9 @@ public class BUAAContentProvider extends ContentProvider {
     public void LoadPostData()  //keep it
     {
         /**
-        if (ClientUtils.getLog_state())
-            addMoreItems(25);
-        else updateNotifications();
+         if (ClientUtils.getLog_state())
+         addMoreItems(25);
+         else updateNotifications();
          */
         addMoreItems(25);
         //ITEMS.addAll(getPostDataList());
@@ -131,7 +127,7 @@ public class BUAAContentProvider extends ContentProvider {
 
     protected CommonItemForList createCommonItemForList(long id, String label, String imageURI, long timestamp, long department, long read) {
 
-        Date time = new Date(timestamp*1000);
+        Date time = new Date(timestamp * 1000);
         return new CommonItemForList(id, label, imageURI, time, department, read);
     }
 
@@ -151,9 +147,8 @@ public class BUAAContentProvider extends ContentProvider {
         ITEMS.addAll(list);
     }
 
-    public void setContext(Context context)
-    {
-      this.context=context;
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     public void updateNotifications() {
@@ -164,6 +159,81 @@ public class BUAAContentProvider extends ContentProvider {
 
     }
 
+    public void deleteDataInList(int position) {
+        ITEMS.remove(position);
+    }
+
+    private void addMoreItems(int dsize) {
+        String t = "";
+        switch (type) {
+            default:
+                t = SQLiteLink.GetNotificationsOrderByUpdateTime(ITEMS.size(), dsize, ClientUtils.getUser());
+                switch (t) {
+                    case SQLiteUtils.SQL_NONE:
+                        break;
+                    default:
+                        try {
+                            JSONArray mJSONArray = new JSONArray(t);
+                            for (int i = 0; i < mJSONArray.length(); i++) {
+                                JSONObject j = mJSONArray.getJSONObject(i);
+                                CommonItemForList c = createCommonItemForList(j.getLong("id"), j.getString("title"), "", j.getLong("updated_at"), j.getLong("department"), j.getLong("read"));
+                                ITEMS.add(c);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                }
+                break;
+            case FAV:
+
+                t = SQLiteLink.GetFAVNotificationsOrderByUpdateTime(ITEMS.size(), dsize, ClientUtils.getUser());
+                switch (t) {
+                    case SQLiteUtils.SQL_NONE:
+                        break;
+                    default:
+                        try {
+                            JSONArray mJSONArray = new JSONArray(t);
+
+                            for (int i = 0; i < mJSONArray.length(); i++) {
+
+                                JSONObject j = mJSONArray.getJSONObject(i);
+                                CommonItemForList c = createCommonItemForList(j.getLong("id"), j.getString("title"), "", j.getLong("updated_at"), j.getLong("department"), j.getLong("read"));
+                                ITEMS.add(c);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                }
+                break;
+            case Trash:
+
+                t = SQLiteLink.GetTrashNotificationsOrderByUpdateTime(ITEMS.size(), dsize, ClientUtils.getUser());
+                switch (t) {
+                    case SQLiteUtils.SQL_NONE:
+                        break;
+                    default:
+                        try {
+                            JSONArray mJSONArray = new JSONArray(t);
+
+                            for (int i = 0; i < mJSONArray.length(); i++) {
+
+                                JSONObject j = mJSONArray.getJSONObject(i);
+                                CommonItemForList c = createCommonItemForList(j.getLong("id"), j.getString("title"), "", j.getLong("updated_at"), j.getLong("department"), j.getLong("read"));
+                                ITEMS.add(c);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                }
+                break;
+        }
+
+        //if(ClientUtils.getLog_state())Toast.makeText(, "", Toast.LENGTH_LONG).show();
+    }
+
     class UpdateNotificationsTask extends AsyncTask<String, Void, StringBuffer> {
 
 
@@ -172,7 +242,7 @@ public class BUAAContentProvider extends ContentProvider {
             StringBuffer errormsg = new StringBuffer("");
 
 
-            if(ClientUtils.getLog_state())ClientUtils.FetchNewNotification();
+            if (ClientUtils.getLog_state()) ClientUtils.FetchNewNotification();
 
             return errormsg;
         }
@@ -258,83 +328,8 @@ public class BUAAContentProvider extends ContentProvider {
                     break;
             }
 
-         //   if (ClientUtils.getLog_state()) Toast.makeText(context, "刷新完成！", Toast.LENGTH_LONG).show();
+            //   if (ClientUtils.getLog_state()) Toast.makeText(context, "刷新完成！", Toast.LENGTH_LONG).show();
         }
 
-    }
-
-    public void deleteDataInList(int position) {
-        ITEMS.remove(position);
-    }
-
-    private void addMoreItems(int dsize) {
-        String t = "";
-        switch (type) {
-            default:
-                t = SQLiteLink.GetNotificationsOrderByUpdateTime(ITEMS.size(), dsize, ClientUtils.getUser());
-                switch (t) {
-                    case SQLiteUtils.SQL_NONE:
-                        break;
-                    default:
-                        try {
-                            JSONArray mJSONArray = new JSONArray(t);
-                            for (int i = 0; i < mJSONArray.length(); i++) {
-                                JSONObject j = mJSONArray.getJSONObject(i);
-                                CommonItemForList c = createCommonItemForList(j.getLong("id"), j.getString("title"), "", j.getLong("updated_at"), j.getLong("department"), j.getLong("read"));
-                                ITEMS.add(c);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        break;
-                }
-                break;
-            case FAV:
-
-                t = SQLiteLink.GetFAVNotificationsOrderByUpdateTime(ITEMS.size(), dsize, ClientUtils.getUser());
-                switch (t) {
-                    case SQLiteUtils.SQL_NONE:
-                        break;
-                    default:
-                        try {
-                            JSONArray mJSONArray = new JSONArray(t);
-
-                            for (int i = 0; i < mJSONArray.length(); i++) {
-
-                                JSONObject j = mJSONArray.getJSONObject(i);
-                                CommonItemForList c = createCommonItemForList(j.getLong("id"), j.getString("title"), "", j.getLong("updated_at"), j.getLong("department"), j.getLong("read"));
-                                ITEMS.add(c);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        break;
-                }
-                break;
-            case Trash:
-
-                t = SQLiteLink.GetTrashNotificationsOrderByUpdateTime(ITEMS.size(), dsize, ClientUtils.getUser());
-                switch (t) {
-                    case SQLiteUtils.SQL_NONE:
-                        break;
-                    default:
-                        try {
-                            JSONArray mJSONArray = new JSONArray(t);
-
-                            for (int i = 0; i < mJSONArray.length(); i++) {
-
-                                JSONObject j = mJSONArray.getJSONObject(i);
-                                CommonItemForList c = createCommonItemForList(j.getLong("id"), j.getString("title"), "", j.getLong("updated_at"), j.getLong("department"), j.getLong("read"));
-                                ITEMS.add(c);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        break;
-                }
-                break;
-        }
-
-        //if(ClientUtils.getLog_state())Toast.makeText(, "", Toast.LENGTH_LONG).show();
     }
 }

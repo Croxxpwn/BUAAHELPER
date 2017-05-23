@@ -1,7 +1,5 @@
 package com.ourbuaa.buaahelper;
 
-import android.util.Log;
-
 /**
  * Created by alan_yang on 2017/1/31.
  */

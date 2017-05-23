@@ -1,7 +1,5 @@
 package com.ourbuaa.buaahelper;
 
-import android.widget.RelativeLayout;
-
 import java.util.Date;
 
 /**
@@ -16,25 +14,8 @@ public class CommonItemForList {
     StringBuffer Detail; //put your HTML content here
     Boolean read;
     long department;
-
-    public StringBuffer getDetail() {
-        return Detail;
-    }
-
-    public void setDetail(StringBuffer detail) {
-        Detail = detail;
-    }
-
     //long id = ++nextid;
     private long id;
-
-    public void setId(long sid) {
-        id = sid;
-    }
-
-    public long getId() {
-        return id;
-    }
 
     CommonItemForList() {
         PathToImage = null;
@@ -51,32 +32,48 @@ public class CommonItemForList {
         read = sread != 0;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public StringBuffer getDetail() {
+        return Detail;
     }
 
-    public void setReceiveTime(Date receiveTime) {
-        ReceiveTime = receiveTime;
+    public void setDetail(StringBuffer detail) {
+        Detail = detail;
     }
 
-    public void setPathToImage(String pathToImage) {
-        PathToImage = pathToImage;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long sid) {
+        id = sid;
     }
 
     public String getLabel() {
         return label;
     }
 
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
     public Date getReceiveTime() {
         return ReceiveTime;
+    }
+
+    public void setReceiveTime(Date receiveTime) {
+        ReceiveTime = receiveTime;
     }
 
     //TODO (YCH,2017.2.8) Tell me the filename(including the suffix name) of the department icon
     public String getPathToImage() {
 
 
-        return "d"+department;
+        return "d" + department;
         //return "ic_star_border_black_24dp";
+    }
+
+    public void setPathToImage(String pathToImage) {
+        PathToImage = pathToImage;
     }
 
     //TODO (YCH,2017.2.8) Tell me that whether it has been read

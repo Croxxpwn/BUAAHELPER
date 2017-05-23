@@ -40,9 +40,21 @@
              <LinearLayout
                  android:layout_height="match_parent"
                  android:layout_width="match_parent"
-                 android:gravity="center_vertical"
+
                  android:layout_toEndOf="@+id/list_icon"
-                 android:orientation="vertical">
+                 android:orientation="vertical"
+
+                 android:id="@+id/list_item_labels">
+                 <LinearLayout
+                     android:layout_height="25dp"
+                     android:layout_width="match_parent"
+                     android:layout_marginEnd="0dp"
+                     android:gravity="end"
+                     android:id="@+id/list_item_status"
+                     android:orientation="horizontal"
+                     >
+
+                 </LinearLayout>
             <TextView
                 android:id="@+id/txt_label_item"
                 android:layout_width="wrap_content"
@@ -64,31 +76,11 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 tools:text="Item Number One"
                 android:layout_toEndOf="@+id/list_icon"
+
                  />
             </LinearLayout>
+
         </RelativeLayout>
 
-        <LinearLayout
-        android:layout_width="wrap_content"
-        android:clickable="true"
-        android:id="@+id/SwipeMenuLayout"
-        android:layout_toRightOf="@id/ListItemLayout"
-        android:layout_alignBottom="@id/ListItemLayout"
-        android:layout_alignTop="@id/ListItemLayout"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Delete"
-            android:id="@+id/SwipeButtonDelete"
-            android:background="@color/color_Swipe_Delete_Button_For_List"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Fav"
-            android:id="@+id/SwipeButtonFav"
-            android:background="@color/color_Swipe_Fav_Button_For_List"/>
-        </LinearLayout>
-    >
-    </LinearLayout>
+</LinearLayout>
 

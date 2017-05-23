@@ -48,7 +48,7 @@ public class DepartmentNLong {
         department_Long2String.put((long) 101, "学生处");
         department_Long2String.put((long) 102, "安全保卫处");
         department_Long2String.put((long) 103, "教务处");
-        department_Long2String.put((long)104, "后勤保障处");
+        department_Long2String.put((long) 104, "后勤保障处");
         department_Long2String.put((long) 105, "国际交流合作处");
         department_Long2String.put((long) 106, "沙河校区");
         department_Long2String.put((long) 107, "财务处");
@@ -60,7 +60,7 @@ public class DepartmentNLong {
         department_Long2String.put((long) 113, "校医院");
     }
 
-    public static String Department_Long2String(long department){
+    public static String Department_Long2String(long department) {
 
         return department_Long2String.get(department);
 

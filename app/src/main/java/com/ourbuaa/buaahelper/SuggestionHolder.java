@@ -9,18 +9,19 @@ import android.widget.TextView;
  */
 
 public class SuggestionHolder extends RecyclerView.ViewHolder {
+    private TextView title, date;
+
+    public SuggestionHolder(View itemView) {
+        super(itemView);
+        title = (TextView) itemView.findViewById(R.id.txt_label_item);
+        title = (TextView) itemView.findViewById(R.id.txt_date_time);
+    }
+
     public TextView getTitle() {
         return title;
     }
 
     public TextView getDate() {
         return date;
-    }
-
-    private TextView title,date;
-    public SuggestionHolder(View itemView) {
-        super(itemView);
-        title = (TextView) itemView.findViewById(R.id.txt_label_item);
-        title = (TextView) itemView.findViewById(R.id.txt_date_time);
     }
 }

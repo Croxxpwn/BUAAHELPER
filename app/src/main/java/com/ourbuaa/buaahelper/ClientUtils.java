@@ -4,13 +4,10 @@ package com.ourbuaa.buaahelper;
 import android.util.Log;
 
 import org.json.JSONArray;
-
 import org.json.JSONObject;
 
 import java.util.HashMap;
-
 import java.util.Map;
-
 
 
 /**
@@ -19,11 +16,17 @@ import java.util.Map;
 
 public class ClientUtils {
 
+    public final static String LOG_SUCCEED = "LOG_SUCCEED";
+    public final static String LOG_WRONG = "LOG_WRONG";
+    public final static String STATE_DISCONNECTED = "STATE_DISCONNECTED";
+    public final static String STATE_LOGOUT = "STATE_LOGOUT";
+    public final static String STATE_BADSERVICE = "STATE_BADSERVICE";
+    public final static String STATE_GOODSERVICE = "STATE_GOODSERVICE";
+    private final static String HOST = "https://api.ourbuaa.com";
     private static Boolean log_state = false;
     private static String access_token = "";
     private static String user = "";
     private static SQLiteUtils SQLiteLink;
-
 
     public static void setSQLiteLink(SQLiteUtils link) {
         SQLiteLink = link;
@@ -45,7 +48,6 @@ public class ClientUtils {
         access_token = token;
     }
 
-
     public static Boolean getLog_state() {
         return log_state;
     }
@@ -53,20 +55,6 @@ public class ClientUtils {
     public static void setLog_state(Boolean b) {
         log_state = b;
     }
-
-
-    public final static String LOG_SUCCEED = "LOG_SUCCEED";
-    public final static String LOG_WRONG = "LOG_WRONG";
-
-    public final static String STATE_DISCONNECTED = "STATE_DISCONNECTED";
-    public final static String STATE_LOGOUT = "STATE_LOGOUT";
-
-    public final static String STATE_BADSERVICE = "STATE_BADSERVICE";
-
-    public final static String STATE_GOODSERVICE = "STATE_GOODSERVICE";
-
-    private final static String HOST = "https://api.ourbuaa.com";
-
 
     public static String Login(String user, String password) {
 

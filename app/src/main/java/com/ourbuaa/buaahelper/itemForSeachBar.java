@@ -7,6 +7,9 @@ import java.util.Date;
  */
 
 public class itemForSeachBar {
+    private String title;
+    private Date time;
+
     public String getTitle() {
         return title;
     }
@@ -22,8 +25,5 @@ public class itemForSeachBar {
     public void setTime(Date time) {
         this.time = time;
     }
-
-    private String title;
-    private Date time;
 
 }

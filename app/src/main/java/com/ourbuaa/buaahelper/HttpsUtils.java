@@ -23,7 +23,7 @@ public class HttpsUtils {
         try {
             url = new URL(httpUrl);
             try {
-                con = (HttpURLConnection)url.openConnection();
+                con = (HttpURLConnection) url.openConnection();
                 input = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 sb = new StringBuilder();
                 String s;
@@ -61,7 +61,7 @@ public class HttpsUtils {
         try {
             url = new URL(httpUrl);
             try {
-                con = (HttpURLConnection)url.openConnection();
+                con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("POST");
                 input = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 sb = new StringBuilder();
@@ -92,16 +92,16 @@ public class HttpsUtils {
         return sb == null ? null : sb.toString();
     }
 
-    public static String httpPost(String httpUrl, Map<String,String> params) {
-        return httpPost(httpUrl+map2url(params));
+    public static String httpPost(String httpUrl, Map<String, String> params) {
+        return httpPost(httpUrl + map2url(params));
     }
 
 
-    private static String map2url(Map<String,String> params){
+    private static String map2url(Map<String, String> params) {
         String str = "?";
         for (Map.Entry<String, String> entry : params.entrySet()) {
             System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-            str+=entry.getKey()+"="+entry.getValue()+"&";
+            str += entry.getKey() + "=" + entry.getValue() + "&";
         }
         return str;
     }
